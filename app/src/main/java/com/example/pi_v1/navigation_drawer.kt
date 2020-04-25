@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -22,34 +23,27 @@ import kotlinx.android.synthetic.main.activity_navigation_drawer.view.*
 
 class navigation_drawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
+    lateinit var toolbar: Toolbar
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var navView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer)
 
-        val toolbar: Toolbar = this.findViewById(R.id.toolbar)
+        toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
+        drawerLayout = findViewById(R.id.drawer_layout)
+        navView = findViewById(R.id.nav_view)
         navView.setNavigationItemSelectedListener(this)
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_calendar, R.id.nav_services, R.id.nav_maps
-            ), drawerLayout
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar, 0, 0
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        navView.setNavigationItemSelectedListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -58,19 +52,14 @@ class navigation_drawer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         return true
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_home -> Toast.makeText(this, "home fragment", Toast.LENGTH_SHORT).show()
-            R.id.nav_calendar -> Toast.makeText(this, "calendar fragment", Toast.LENGTH_SHORT).show()
-            R.id.nav_comtacts -> Toast.makeText(this, "contacts fragment", Toast.LENGTH_SHORT).show()
-            R.id.nav_maps -> Toast.makeText(this, "maps fragment", Toast.LENGTH_SHORT).show()
-            R.id.nav_manuals -> Toast.makeText(this, "manuals fragment", Toast.LENGTH_SHORT).show()
-            R.id.nav_services -> Toast.makeText(this, "services fragment", Toast.LENGTH_SHORT).show()
+            R.id.nav_home -> findNavController(R.id.nav_host_fragment).navigate(R.id.nav_home)
+            R.id.nav_calendar -> findNavController(R.id.nav_host_fragment).navigate(R.id.nav_calendar)
+            R.id.nav_contacts -> findNavController(R.id.nav_host_fragment).navigate(R.id.nav_contacts)
+            R.id.nav_maps -> findNavController(R.id.nav_host_fragment).navigate(R.id.nav_maps)
+            R.id.nav_manuals -> findNavController(R.id.nav_host_fragment).navigate(R.id.nav_manuals)
+            R.id.nav_services ->    findNavController(R.id.nav_host_fragment).navigate(R.id.nav_services)
         }
         drawer_layout.closeDrawer(GravityCompat.END)
         return true

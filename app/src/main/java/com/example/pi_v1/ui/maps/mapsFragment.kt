@@ -16,8 +16,6 @@ class mapsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_maps, container, false)
-
-
         return root
     }
 }

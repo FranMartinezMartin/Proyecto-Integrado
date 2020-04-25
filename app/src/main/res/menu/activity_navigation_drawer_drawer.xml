@@ -21,7 +21,7 @@
             android:icon="@android:drawable/ic_dialog_map"
             android:title="@string/menu_maps" />
         <item
-            android:id="@+id/nav_comtacts"
+            android:id="@+id/nav_contacts"
             android:icon="@drawable/contact_image"
             android:title="@string/menu_contacts" />
         <item

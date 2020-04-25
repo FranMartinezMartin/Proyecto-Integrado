@@ -10,29 +10,22 @@
         android:name="com.example.pi_v1.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
-
         <action
-            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
-            app:destination="@id/nav_home_second" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_home_second"
-        android:name="com.example.pi_v1.ui.home.HomeSecondFragment"
-        android:label="home_second"
-        tools:layout="@layout/fragment_home_second">
-
-        <argument
-            android:name="myArg"
-            app:argType="string" />
+            android:id="@+id/action_nav_home_to_mapsFragment"
+            app:destination="@id/mapsFragment"
+            app:popUpTo="@id/nav_home" />
         <action
-            android:id="@+id/action_nav_home_second_to_calendarFragment"
-            app:destination="@id/calendarFragment" />
+            android:id="@+id/action_nav_home_to_servicesFragment"
+            app:destination="@id/servicesFragment"
+            app:popUpTo="@id/nav_home" />
         <action
-            android:id="@+id/action_nav_home_second_to_servicesFragment"
-            app:destination="@id/servicesFragment" />
+            android:id="@+id/action_nav_home_to_calendarFragment"
+            app:destination="@id/calendarFragment"
+            app:popUpTo="@id/nav_home" />
         <action
-            android:id="@+id/action_nav_home_second_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
+            android:id="@+id/action_nav_home_to_manuals"
+            app:destination="@id/manuals"
+            app:popUpTo="@id/nav_home" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -49,5 +42,10 @@
         android:name="com.example.pi_v1.ui.maps.mapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/manuals"
+        android:name="com.example.pi_v1.ui.manuals.manuals"
+        android:label="fragment_manuals"
+        tools:layout="@layout/fragment_manuals" />
 
 </navigation>

@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">PI_V1</string>
+
+    <!-- Strings related to login -->
+    <string name="indicativo">Indicativo</string>
+    <string name="passwd">Contraseña</string>
+    <string name="action_sign_in">Iniciar sesión</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"¡ Bienvenido !"</string>
+    <string name="invalid_username">Indicativo incorrecto</string>
+    <string name="invalid_password">Contraseña incorrecta</string>
+    <string name="login_failed">"Inicio de sesión fallido"</string>
+
+    <!-- Strings related to navigation drawer -->
+    <string name="title_activity_navigation_drawer">navigation_drawer</string>
+    <string name="navigation_drawer_open">Abrir lateral</string>
+    <string name="navigation_drawer_close">Cerrar lateral</string>
+    <string name="nav_header_title">Nombre del Voluntario</string>
+    <string name="nav_header_subtitle">Indicativo</string>
+    <string name="nav_header_desc">Cabecerar</string>
+    <string name="action_settings">Configuración</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_calendar">Calendario</string>
+    <string name="menu_services">Servicios</string>
+    <string name="menu_maps">Mapas</string>
+    <string name="menu_contacts">Contactos</string>
+    <string name="menu_manuals">Manuales</string>
+
+    <!-- Strings related to services boss menu -->
+    <string name="assign_tab">Asignar</string>
+    <string name="create_tab">Crear</string>
+    <string name="modify_tab">Modificar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

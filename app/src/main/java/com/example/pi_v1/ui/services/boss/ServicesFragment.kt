@@ -12,14 +12,14 @@ import com.example.pi_v1.R
 
 class ServicesFragment : Fragment() {
 
-    private lateinit var slideshowViewModel: ServicesViewModel
+    private lateinit var servicesViewModel: ServicesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        slideshowViewModel =
+        servicesViewModel =
             ViewModelProviders.of(this).get(ServicesViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_services, container, false)
         return root

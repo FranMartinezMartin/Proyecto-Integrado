@@ -12,40 +12,49 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_nav_home_to_mapsFragment"
-            app:destination="@id/mapsFragment"
+            app:destination="@id/nav_maps"
             app:popUpTo="@id/nav_home" />
         <action
             android:id="@+id/action_nav_home_to_servicesFragment"
-            app:destination="@id/servicesFragment"
+            app:destination="@id/nav_services"
             app:popUpTo="@id/nav_home" />
         <action
             android:id="@+id/action_nav_home_to_calendarFragment"
-            app:destination="@id/calendarFragment"
+            app:destination="@id/nav_calendar"
             app:popUpTo="@id/nav_home" />
         <action
             android:id="@+id/action_nav_home_to_manuals"
-            app:destination="@id/manuals"
+            app:destination="@id/nav_manuals"
+            app:popUpTo="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_home_to_contactsFragment"
+            app:destination="@id/nav_contacts"
             app:popUpTo="@id/nav_home" />
     </fragment>
     <fragment
-        android:id="@+id/calendarFragment"
+        android:id="@+id/nav_calendar"
         android:name="com.example.pi_v1.ui.calendar.CalendarFragment"
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_calendar" />
     <fragment
-        android:id="@+id/servicesFragment"
+        android:id="@+id/nav_services"
         android:name="com.example.pi_v1.ui.services.boss.ServicesFragment"
         android:label="fragment_services"
         tools:layout="@layout/fragment_services" />
     <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.example.pi_v1.ui.maps.mapsFragment"
+        android:id="@+id/nav_maps"
+        android:name="com.example.pi_v1.ui.maps.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
     <fragment
-        android:id="@+id/manuals"
-        android:name="com.example.pi_v1.ui.manuals.manuals"
+        android:id="@+id/nav_manuals"
+        android:name="com.example.pi_v1.ui.manuals.ManualFragment"
         android:label="fragment_manuals"
         tools:layout="@layout/fragment_manuals" />
+    <fragment
+        android:id="@+id/nav_contacts"
+        android:name="com.example.pi_v1.ui.contacts.ContactsFragment"
+        android:label="fragment_contacts"
+        tools:layout="@layout/fragment_contacts" />
 
 </navigation>

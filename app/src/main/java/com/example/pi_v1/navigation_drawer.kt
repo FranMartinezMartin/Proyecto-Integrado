@@ -61,7 +61,7 @@ class navigation_drawer : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.nav_manuals -> findNavController(R.id.nav_host_fragment).navigate(R.id.nav_manuals)
             R.id.nav_services ->    findNavController(R.id.nav_host_fragment).navigate(R.id.nav_services)
         }
-        drawer_layout.closeDrawer(GravityCompat.END)
+        drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 }

@@ -8,9 +8,6 @@ import android.view.ViewGroup
 
 import com.example.pi_v1.R
 
-/**
- * A simple [Fragment] subclass.
- */
 class ModifyFragment : Fragment() {
 
     override fun onCreateView(

@@ -38,7 +38,7 @@
         tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/nav_services"
-        android:name="com.example.pi_v1.ui.services.boss.ServicesFragment"
+        android:name="com.example.pi_v1.ui.services.ServicesFragment"
         android:label="fragment_services"
         tools:layout="@layout/fragment_services" />
     <fragment

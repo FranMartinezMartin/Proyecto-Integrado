@@ -19,8 +19,6 @@ class ManualFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        manualsViewModel =
-            ViewModelProviders.of(this).get(manualsViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_manuals, container, false)
         return root
     }

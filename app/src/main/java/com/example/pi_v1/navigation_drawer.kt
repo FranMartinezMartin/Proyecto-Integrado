@@ -60,6 +60,7 @@ class navigation_drawer : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.nav_maps -> findNavController(R.id.nav_host_fragment).navigate(R.id.nav_maps)
             R.id.nav_manuals -> findNavController(R.id.nav_host_fragment).navigate(R.id.nav_manuals)
             R.id.nav_services ->    findNavController(R.id.nav_host_fragment).navigate(R.id.nav_services)
+            else -> findNavController(R.id.nav_host_fragment).navigate(R.id.nav_home)
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true

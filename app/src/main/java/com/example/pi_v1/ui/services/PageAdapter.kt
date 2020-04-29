@@ -14,8 +14,8 @@ class PageAdapter(fragmentManager: FragmentManager, private var tabCount: Int) :
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> AssignFragment()
-            1 -> CreateFragment()
-            else -> ModifyFragment()
+            1 -> ModifyFragment()
+            else -> CreateFragment()
         }
     }
 

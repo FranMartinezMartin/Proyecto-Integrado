@@ -7,11 +7,13 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.ViewPager
 import com.example.pi_v1.R
+import com.google.android.material.tabs.TabItem
 import com.google.android.material.tabs.TabLayout
 import java.util.zip.Inflater
 
@@ -28,6 +30,7 @@ class ServicesFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_services, container, false)
 
         tabLayout = root.findViewById(R.id.tabLayout)
+
         pager = root.findViewById(R.id.pager)
         val pageAdapter = PageAdapter(childFragmentManager, tabLayout.tabCount)
         pager.adapter = pageAdapter
@@ -42,13 +45,14 @@ class ServicesFragment : Fragment() {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-                TODO()
+
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {
-                TODO()
+
             }
         })
+
         return root
     }
 }

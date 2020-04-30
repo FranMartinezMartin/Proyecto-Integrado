@@ -35,16 +35,16 @@
         app:layout_constraintStart_toEndOf="@+id/vDate"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/servicesRecView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageCalendar" /-->
+        app:layout_constraintTop_toBottomOf="@+id/imageCalendar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

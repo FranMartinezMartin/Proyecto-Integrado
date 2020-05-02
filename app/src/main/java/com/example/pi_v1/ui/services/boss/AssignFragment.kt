@@ -1,19 +1,15 @@
 package com.example.pi_v1.ui.services.boss
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.example.pi_v1.R
 import com.example.pi_v1.model.Service
 import java.util.*
-import java.util.zip.DataFormatException
 
 class AssignFragment : Fragment() {
 

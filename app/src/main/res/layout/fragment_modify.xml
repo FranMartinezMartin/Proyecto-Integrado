@@ -5,8 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.services.boss.ModifyFragment">
 
-    <ListView
-        android:id="@+id/lvServices"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="15dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

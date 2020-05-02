@@ -43,7 +43,7 @@ class MyAdapter(private val services: List<Service>) :
 
         val tvServiceName: TextView = itemView.findViewById(R.id.tvServiceName)
         val placeName: TextView = itemView.findViewById(R.id.tvPlaceName)
-        val date: EditText = itemView.findViewById(R.id.date)
+        val date: TextView = itemView.findViewById(R.id.date)
         val volunteerList: ListView = itemView.findViewById(R.id.volunteersList)
         val vehiclesList: ListView = itemView.findViewById(R.id.vehiclesList)
 

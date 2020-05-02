@@ -11,8 +11,8 @@ data class Service (
     val place: String,
     val date: Date,
     val id: String,
-    val servicePaper: File,
+    val servicePaper: File?,
     val revisionPaper: File?,
     val map: Uri?,
-    val contact: Contact
+    val contact: Contact?
 )

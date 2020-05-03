@@ -3,9 +3,9 @@ package com.example.pi_v1.ui.services
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.pi_v1.ui.services.boss.AssignFragment
-import com.example.pi_v1.ui.services.boss.CreateFragment
-import com.example.pi_v1.ui.services.boss.ModifyFragment
+import com.example.pi_v1.ui.services.boss.BossAssignFragment
+import com.example.pi_v1.ui.services.boss.BossCreateFragment
+import com.example.pi_v1.ui.services.boss.BossModifyFragment
 
 @Suppress("DEPRECATION")
 class PageAdapter(fragmentManager: FragmentManager, private var tabCount: Int) :
@@ -13,9 +13,9 @@ class PageAdapter(fragmentManager: FragmentManager, private var tabCount: Int) :
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> AssignFragment()
-            1 -> ModifyFragment()
-            else -> CreateFragment()
+            0 -> BossAssignFragment()
+            1 -> BossModifyFragment()
+            else -> BossCreateFragment()
         }
     }
 

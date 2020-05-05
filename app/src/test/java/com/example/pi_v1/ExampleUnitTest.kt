@@ -1,4 +1,4 @@
-package com.example.pi_v1
+package org.dipalme.ProteApp
 
 import org.junit.Test
 

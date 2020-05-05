@@ -1,4 +1,4 @@
-package com.example.pi_v1
+package org.dipalme.ProteApp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.pi_v1", appContext.packageName)
+        assertEquals("org.dipalme.ProteApp", appContext.packageName)
     }
 }

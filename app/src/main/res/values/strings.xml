@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PI_V1</string>
+    <string name="app_name">ProteApp</string>
 
     <!-- Strings related to login -->
     <string name="indicativo">Indicativo</string>

@@ -18,8 +18,7 @@ class ContactsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        contactsViewModel =
-            ViewModelProviders.of(this).get(ContactsViewModel::class.java)
+
         return inflater.inflate(R.layout.fragment_contacts, container, false)
     }
 

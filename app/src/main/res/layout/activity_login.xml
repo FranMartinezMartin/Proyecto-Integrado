@@ -30,10 +30,10 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/indicative" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/indicative"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -47,6 +47,7 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:selectAllOnFocus="true"
+        android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -89,10 +90,24 @@
         android:layout_width="287dp"
         android:layout_height="312dp"
         android:layout_marginTop="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintBottom_toTopOf="@+id/indicative"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/logo_pc" />
+
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="2dp"
+        android:text="TextView"
+        android:textColor="#FF0000"
+        android:textSize="12sp"
+        android:textStyle="italic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/indicative"
+        app:layout_constraintEnd_toEndOf="@+id/indicative"
+        app:layout_constraintStart_toStartOf="@+id/indicative" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package org.dipalme.ProteApp
+package org.dipalme.proteApp
 
 import org.junit.Test
 

@@ -42,12 +42,12 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        login.setOnClickListener {
+        /*login.setOnClickListener {
             loading.visibility = View.VISIBLE
             var i =  Intent(this, navigation_drawer::class.java)
             startActivity(i)
             finish()
-        }
+        }*/
     }
 }
 

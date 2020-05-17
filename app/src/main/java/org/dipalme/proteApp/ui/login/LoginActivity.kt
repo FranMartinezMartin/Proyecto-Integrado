@@ -63,13 +63,11 @@ class LoginActivity : AppCompatActivity() {
         btLogin.setOnClickListener {
             viewModel.UserLog(etIndicative.text.toString(), etPassword.text.toString())
         }
-
     }
 
     private fun initViewModel() {
         viewModel =
             ViewModelProviders.of(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
-
 
         viewModel.loginDataState.observe(this, Observer {
             btLogin.isEnabled = it.validIndicative == true && it.validPassword == true
@@ -87,11 +85,9 @@ class LoginActivity : AppCompatActivity() {
                 errorText.visibility = View.INVISIBLE
             }
         })
-
         viewModel.errorEvent.observe(this, Observer {
             this.showErrorDialog(it)
         })
-
         viewModel.navigationEvent.observe(this, Observer {
             val i = Intent(this, navigation_drawer::class.java)
             startActivity(i)

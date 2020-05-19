@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var errorText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
@@ -86,6 +87,7 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 errorText.visibility = View.INVISIBLE
             }
+            loading.visibility = View.GONE
         })
 
         viewModel.errorEvent.observe(this, Observer {
@@ -96,6 +98,7 @@ class LoginActivity : AppCompatActivity() {
             val i = Intent(this, navigation_drawer::class.java)
             startActivity(i)
             finish()
+            loading.visibility = View.GONE
         })
     }
 }

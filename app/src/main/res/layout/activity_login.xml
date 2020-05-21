@@ -109,8 +109,6 @@
         app:layout_constraintBottom_toTopOf="@+id/indicative"
         app:layout_constraintEnd_toEndOf="@+id/indicative"
         app:layout_constraintStart_toStartOf="@+id/indicative" />
-<<<<<<< Updated upstream
-=======
 
     <ViewStub
         android:id="@+id/vsLoading"
@@ -121,5 +119,4 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
 
->>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>

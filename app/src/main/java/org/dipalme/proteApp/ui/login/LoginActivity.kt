@@ -62,7 +62,12 @@ class LoginActivity : AppCompatActivity() {
          * Sing-in button functionality
          */
         btLogin.setOnClickListener {
+<<<<<<< Updated upstream
             viewModel.UserLog(etIndicative.text.toString(), etPassword.text.toString())
+=======
+            viewModel.UserLog(this, etIndicative.text.toString(), etPassword.text.toString())
+            loading.visibility = View.VISIBLE
+>>>>>>> Stashed changes
         }
 
     }
@@ -71,6 +76,10 @@ class LoginActivity : AppCompatActivity() {
         viewModel =
             ViewModelProviders.of(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
 
+<<<<<<< Updated upstream
+=======
+        viewModel.checkLoggedUser(this)
+>>>>>>> Stashed changes
 
         viewModel.loginDataState.observe(this, Observer {
             btLogin.isEnabled = it.validIndicative == true && it.validPassword == true

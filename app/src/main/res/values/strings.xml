@@ -12,13 +12,12 @@
     <string name="login_failed">"Inicio de sesión fallido"</string>
 
     <!-- Strings related to navigation drawer -->
-    <string name="title_activity_navigation_drawer">navigation_drawer</string>
     <string name="navigation_drawer_open">Abrir lateral</string>
     <string name="navigation_drawer_close">Cerrar lateral</string>
     <string name="nav_header_title">Nombre del Voluntario</string>
     <string name="nav_header_subtitle">Indicativo</string>
     <string name="nav_header_desc">Cabecera</string>
-    <string name="action_settings">Configuración</string>
+    <string name="logout">Cerrar Sesión</string>
     <string name="menu_home">Noticias</string>
     <string name="menu_calendar">Calendario</string>
     <string name="menu_services">Servicios</string>
@@ -49,13 +48,34 @@
     <string name="disp6_18_24">06:00 - 18:00</string>
     <string name="disp7_12_24">12:00 - 24:00</string>
     <string name="disp8_00_24">00:00 - 24:00</string>
+<<<<<<< Updated upstream
     <string name="send">Enviar</string>
 
 
+=======
+    <string-array name="months">
+        <item>Enero</item>
+        <item>Febrero</item>
+        <item>Marzo</item>
+        <item>Abril</item>
+        <item>Mayo</item>
+        <item>Junio</item>
+        <item>Julio</item>
+        <item>Agosto</item>
+        <item>Septiembre</item>
+        <item>Octubre</item>
+        <item>Noviembre</item>
+        <item>Diciembre</item>
+    </string-array>
+    <string name="send">Enviar</string>
+
+>>>>>>> Stashed changes
     <!-- Errors -->
     <string name="ER_001">Indicativo incorrecto</string>
     <string name="ER_002">Contraseña incorrecta</string>
     <string name="ER_003">Indicativo o contraseña incorrectos</string>
+    <string name="ER_004">Sin datos</string>
+    <string name="ER_005">No se pudo conectar con el servidor. Revise su conexión a internet.</string>
 
 
 </resources>

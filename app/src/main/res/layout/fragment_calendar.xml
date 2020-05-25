@@ -7,138 +7,189 @@
     android:background="#CCE65100"
     tools:context=".ui.calendar.CalendarFragment">
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/btn_rounded_calendar"
+    <ViewStub
+        android:id="@+id/vsLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/view_loading"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="#FFFFFF"
-        android:gravity="center"
-        android:text="@string/disp_calendar"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btAvailability"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/btn_rounded_calendar"
-        android:text="@string/send"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbDisp7" />
+            <TextView
+                android:id="@+id/tvMonth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="5dp"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:text="month"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <RadioButton
-        android:id="@+id/rbDisp1"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/btn_rounded_calendar"
-        android:text="@string/disp1_00_06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                android:id="@+id/compactcalendar_view"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_margin="5dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:compactCalendarBackgroundColor="@android:color/white"
+                app:compactCalendarCurrentDayBackgroundColor="#FF0000"
+                app:compactCalendarCurrentSelectedDayBackgroundColor="#34A5ED"
+                app:compactCalendarMultiEventIndicatorColor="#0924EF"
+                app:compactCalendarTargetHeight="360dp"
+                app:compactCalendarTextColor="@android:color/black"
+                app:compactCalendarTextSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.523"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvMonth" />
 
-    <RadioButton
-        android:id="@+id/rbDisp2"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/btn_rounded_calendar"
-        android:text="@string/disp2_08_12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            <TextView
+                android:id="@+id/availabilityText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="10dp"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:text="@string/disp_calendar"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/compactcalendar_view" />
 
-    <RadioButton
-        android:id="@+id/rbDisp3"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/btn_rounded_calendar"
-        android:text="@string/disp3_12_18"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbDisp1" />
+            <Button
+                android:id="@+id/btAvailability"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/btn_rounded_calendar"
+                android:text="@string/send"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rbDisp7" />
 
-    <RadioButton
-        android:id="@+id/rbDisp4"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/btn_rounded_calendar"
-        android:text="@string/disp4_18_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbDisp2" />
+            <RadioButton
+                android:id="@+id/rbDisp1"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_rounded_calendar"
+                android:text="@string/disp1_00_06"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/availabilityText" />
 
-    <RadioButton
-        android:id="@+id/rbDisp5"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/btn_rounded_calendar"
-        android:text="@string/disp5_00_12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbDisp3" />
+            <RadioButton
+                android:id="@+id/rbDisp2"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/btn_rounded_calendar"
+                android:text="@string/disp2_08_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/availabilityText" />
 
-    <RadioButton
-        android:id="@+id/rbDisp6"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/btn_rounded_calendar"
-        android:text="@string/disp6_18_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbDisp4" />
+            <RadioButton
+                android:id="@+id/rbDisp3"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_rounded_calendar"
+                android:text="@string/disp3_12_18"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rbDisp1" />
 
-    <RadioButton
-        android:id="@+id/rbDisp7"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/btn_rounded_calendar"
-        android:text="@string/disp7_12_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbDisp5" />
+            <RadioButton
+                android:id="@+id/rbDisp4"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/btn_rounded_calendar"
+                android:text="@string/disp4_18_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rbDisp2" />
 
-    <RadioButton
-        android:id="@+id/rbDisp8"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/btn_rounded_calendar"
-        android:text="@string/disp8_00_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbDisp6" />
+            <RadioButton
+                android:id="@+id/rbDisp5"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_rounded_calendar"
+                android:text="@string/disp5_00_12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rbDisp3" />
+
+            <RadioButton
+                android:id="@+id/rbDisp6"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/btn_rounded_calendar"
+                android:text="@string/disp6_18_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rbDisp4" />
+
+            <RadioButton
+                android:id="@+id/rbDisp7"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_rounded_calendar"
+                android:text="@string/disp7_12_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rbDisp5" />
+
+            <RadioButton
+                android:id="@+id/rbDisp8"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/btn_rounded_calendar"
+                android:text="@string/disp8_00_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rbDisp6" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,8 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< Updated upstream
 
         <activity android:name="org.dipalme.proteApp.navigation_drawer"
+=======
+        <activity
+            android:name="org.dipalme.proteApp.navigation_drawer"
+>>>>>>> Stashed changes
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name="org.dipalme.proteApp.ui.login.LoginActivity"

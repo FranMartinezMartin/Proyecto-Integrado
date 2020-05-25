@@ -70,7 +70,8 @@ dependencies {
     /**  Anko: Alerts and background work **/
     implementation 'org.jetbrains.anko:anko-common:0.9'
 
-
+    /** Compact Calendar View**/
+    implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
 
 
     testImplementation 'junit:junit:4.13'

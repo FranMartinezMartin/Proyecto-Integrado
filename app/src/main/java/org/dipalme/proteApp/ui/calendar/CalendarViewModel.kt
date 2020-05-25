@@ -15,6 +15,7 @@ import org.dipalme.proteApp.data.BACKGROUND
 import org.dipalme.proteApp.data.CalendarAvailabilityState
 import org.dipalme.proteApp.ui.liveEvents.SingleLiveEvent
 
+
 class CalendarViewModel : ViewModel() {
     val calendarAvailability = MutableLiveData<CalendarAvailabilityState>()
     val navigationEvent: SingleLiveEvent<NavigationEvent> = SingleLiveEvent()

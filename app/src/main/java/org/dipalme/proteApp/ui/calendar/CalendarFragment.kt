@@ -38,6 +38,7 @@ class CalendarFragment : Fragment() {
     private lateinit var loading: ViewStub
     private lateinit var thisView: View
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -182,6 +183,5 @@ class CalendarFragment : Fragment() {
         tvmonth = root.findViewById(R.id.tvMonth)
         val c1 = Calendar.getInstance()
         tvmonth.text = resources.getStringArray(R.array.months)[c1.get(Calendar.MONTH)]
-
     }
 }

@@ -4,15 +4,14 @@ package org.dipalme.proteApp.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.ViewStub
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import org.dipalme.proteApp.R
@@ -26,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var btLogin: Button
     private lateinit var loading: ViewStub
     private lateinit var errorText: TextView
+    private lateinit var loading: ViewStub
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -36,8 +36,10 @@ class LoginActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.password)
         btLogin = findViewById(R.id.login_button)
         loading = findViewById(R.id.vsLoading)
+
         errorText = findViewById(R.id.tvError)
         viewModel = LoginViewModel()
+        loading = findViewById(R.id.vsLoading)
         initViewModel()
 
         etIndicative.addTextChangedListener(object : TextWatcher {
@@ -72,7 +74,6 @@ class LoginActivity : AppCompatActivity() {
             ViewModelProviders.of(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
 
         viewModel.checkLoggedUser(this)
-
         viewModel.loginDataState.observe(this, Observer {
             btLogin.isEnabled = it.validIndicative == true && it.validPassword == true
             when (it.validIndicative) {
@@ -90,12 +91,12 @@ class LoginActivity : AppCompatActivity() {
             }
             loading.visibility = View.GONE
         })
-
         viewModel.errorEvent.observe(this, Observer {
+            loading.visibility = View.GONE
             this.showErrorDialog(it)
         })
-
         viewModel.navigationEvent.observe(this, Observer {
+            loading.visibility = View.GONE
             val i = Intent(this, navigation_drawer::class.java)
             startActivity(i)
             finish()

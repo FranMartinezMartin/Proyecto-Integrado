@@ -31,6 +31,7 @@ class CalendarFragment : Fragment() {
     private lateinit var viewModel: CalendarViewModel
     private lateinit var loading: ViewStub
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -156,7 +157,6 @@ class CalendarFragment : Fragment() {
 
     }
 
-
     private fun loadViews(root: View) {
         calendar = root.findViewById(R.id.compactcalendar_view)
         rbDisp1 = root.findViewById(R.id.rbDisp1)
@@ -168,6 +168,5 @@ class CalendarFragment : Fragment() {
         rbDisp7 = root.findViewById(R.id.rbDisp7)
         rbDisp8 = root.findViewById(R.id.rbDisp8)
         loading = root.findViewById(R.id.vsLoading)
-
     }
 }

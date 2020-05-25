@@ -6,34 +6,24 @@ import com.google.gson.annotations.SerializedName
 data class Volunteer(
     @SerializedName("activo")
     val active: Boolean?,
-
     @SerializedName("carnet")
     val driver: Boolean?,
-
     @SerializedName("contraseña")
     val password: String?,
-
     @SerializedName("correo")
     val mail: String?,
-
     @SerializedName("foto")
     val image: String? = null,
-
     @SerializedName("indicativo")
     val indicative: String?,
-
     @SerializedName("ingreso")
     val incorporation: Timestamp?,
-
     @SerializedName("jefe")
     val boss: Boolean?,
-
     @SerializedName("nacimiento")
     val birthday: Timestamp?,
-
     @SerializedName("nombre")
     val name: String?,
-
     @SerializedName("telefono")
     var phone: String?
 )

@@ -45,15 +45,23 @@ class LoginViewModel : ViewModel() {
                 if (r.exists()) {
                     if (r.data?.get("contraseña").toString() == password) {
                         navigationEvent.postValue(NavigationEvent.NavigationMain)
-
-
-
-
-                        /*val volunteer = r.toObject(Volunteer::class.java)
+                        val volunteer = Volunteer(
+                            r.getBoolean("activo"),
+                            r.getBoolean("carnet"),
+                            r.getString("contraseña"),
+                            r.getString("correo"),
+                            r.data?.get("foto").toString(),
+                            r.getString("indicativo"),
+                            r.getTimestamp("ingreso"),
+                            r.getBoolean("jefe"),
+                            r.getTimestamp("nacimiento"),
+                            r.getString("nombre"),
+                            r.getString("telefono")
+                        )
                         Log.w("Volunteer ID: LoginViewModel()", volunteer.toString())
-                        if (volunteer != null) {
+                        if (volunteer?.active != null) {
                             Repository(context).setCurrentVolunteer(volunteer)
-                        }*/
+                        }
                     } else {
                         errorEvent.postValue(R.string.ER_002.toString())
                     }

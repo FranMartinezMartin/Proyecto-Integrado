@@ -1,5 +1,7 @@
 package org.dipalme.proteApp.ui.login
 
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
@@ -7,8 +9,10 @@ import org.dipalme.proteApp.NavigationEvent
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.data.BACKGROUND
 import org.dipalme.proteApp.data.LoginDataState
+import org.dipalme.proteApp.data.Repository
 import org.dipalme.proteApp.extension.isIndicativeValid
 import org.dipalme.proteApp.extension.isPasswordValid
+import org.dipalme.proteApp.model.Volunteer
 import org.dipalme.proteApp.ui.liveEvents.SingleLiveEvent
 
 
@@ -23,9 +27,7 @@ class LoginViewModel : ViewModel() {
 
     fun validateIndicative(indicative: String) {
         loginDataState.value = loginDataState.value?.copy(
-            validIndicative = isIndicativeValid(
-                indicative
-            )
+            validIndicative = isIndicativeValid(indicative)
         )
     }
 
@@ -34,27 +36,49 @@ class LoginViewModel : ViewModel() {
             loginDataState.value?.copy(validPassword = password.isPasswordValid())
     }
 
-    fun UserLog(indicative: String, password: String) {
+    fun UserLog(context: Context, indicative: String, password: String) {
         BACKGROUND.submit {
             // Access a Cloud Firestore instance from your Activity
             val db = FirebaseFirestore.getInstance()
 
-            db.collection("Usuarios").document(indicative).get().addOnSuccessListener { result ->
-                if(result.exists()){
-                    if(result.data?.get("contraseña").toString() == password){
+            db.collection("Usuarios").document(indicative).get().addOnSuccessListener { r ->
+                if (r.exists()) {
+                    if (r.data?.get("contraseña").toString() == password) {
                         navigationEvent.postValue(NavigationEvent.NavigationMain)
-                        /**
-                         * Guardar el usuario para utilizar sus datos posteriormente
-                         */
+                        val volunteer = Volunteer(
+                            r.getBoolean("activo"),
+                            r.getBoolean("carnet"),
+                            r.getString("contraseña"),
+                            r.getString("correo"),
+                            r.data?.get("foto").toString(),
+                            r.getString("indicativo"),
+                            r.getTimestamp("ingreso"),
+                            r.getBoolean("jefe"),
+                            r.getTimestamp("nacimiento"),
+                            r.getString("nombre"),
+                            r.getString("telefono")
+                        )
+                        Log.w("Volunteer ID: LoginViewModel()", volunteer.toString())
+                        if (volunteer?.active != null) {
+                            Repository(context).setCurrentVolunteer(volunteer)
+                        }
                     } else {
                         errorEvent.postValue(R.string.ER_002.toString())
                     }
                 } else {
                     errorEvent.postValue(R.string.ER_001.toString())
                 }
-
             }.addOnFailureListener {
                 errorEvent.postValue(R.string.ER_001.toString())
+            }
+        }
+    }
+
+    fun checkLoggedUser(context: Context) {
+        BACKGROUND.submit {
+            val volunteer = Repository(context).getCurrentVolunteer()
+            if (volunteer != null) {
+                navigationEvent.postValue(NavigationEvent.NavigationMain)
             }
         }
     }

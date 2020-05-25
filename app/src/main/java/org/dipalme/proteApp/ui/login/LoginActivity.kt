@@ -23,16 +23,20 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var etIndicative: EditText
     private lateinit var etPassword: EditText
     private lateinit var btLogin: Button
+    private lateinit var loading: ViewStub
     private lateinit var errorText: TextView
     private lateinit var loading: ViewStub
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         etIndicative = findViewById(R.id.indicative)
         etPassword = findViewById(R.id.password)
         btLogin = findViewById(R.id.login_button)
+        loading = findViewById(R.id.vsLoading)
+
         errorText = findViewById(R.id.tvError)
         viewModel = LoginViewModel()
         loading = findViewById(R.id.vsLoading)
@@ -60,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
          * Sing-in button functionality
          */
         btLogin.setOnClickListener {
-            viewModel.UserLog(etIndicative.text.toString(), etPassword.text.toString())
+            viewModel.UserLog(this, etIndicative.text.toString(), etPassword.text.toString())
             loading.visibility = View.VISIBLE
         }
     }
@@ -69,6 +73,7 @@ class LoginActivity : AppCompatActivity() {
         viewModel =
             ViewModelProviders.of(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
 
+        viewModel.checkLoggedUser(this)
         viewModel.loginDataState.observe(this, Observer {
             btLogin.isEnabled = it.validIndicative == true && it.validPassword == true
             when (it.validIndicative) {
@@ -84,6 +89,7 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 errorText.visibility = View.INVISIBLE
             }
+            loading.visibility = View.GONE
         })
         viewModel.errorEvent.observe(this, Observer {
             loading.visibility = View.GONE
@@ -94,6 +100,7 @@ class LoginActivity : AppCompatActivity() {
             val i = Intent(this, navigation_drawer::class.java)
             startActivity(i)
             finish()
+            loading.visibility = View.GONE
         })
     }
 }

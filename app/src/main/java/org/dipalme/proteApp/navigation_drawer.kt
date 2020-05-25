@@ -3,6 +3,7 @@ package org.dipalme.proteApp
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -11,6 +12,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_navigation_drawer.*
+import kotlinx.android.synthetic.main.nav_header_navigation_drawer.*
+import org.dipalme.proteApp.data.Repository
 
 class navigation_drawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,8 +28,16 @@ class navigation_drawer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
+        var hView = navView.getHeaderView(0)
+        var tvVolName: TextView = hView.findViewById(R.id.tvVolunteerName)
+        var tvVolInd: TextView = hView.findViewById(R.id.tvVolunteerIndicative)
+        var volunteer = Repository(this).getCurrentVolunteer()
+        tvVolName.text = volunteer?.name.toString()
+        tvVolInd.text = volunteer?.indicative.toString()
+
         navView.setNavigationItemSelectedListener(this)
 
         val toggle = ActionBarDrawerToggle(
@@ -41,6 +52,17 @@ class navigation_drawer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.navigation_drawer, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.logout -> {
+                Repository(this).logoutVolunteer()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

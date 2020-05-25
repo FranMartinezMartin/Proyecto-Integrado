@@ -1,10 +1,6 @@
 package org.dipalme.proteApp.ui.calendar
 
-<<<<<<< Updated upstream
-import androidx.lifecycle.LiveData
-=======
 import android.util.Log
->>>>>>> Stashed changes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.sundeepk.compactcalendarview.CompactCalendarView
@@ -15,9 +11,6 @@ import org.dipalme.proteApp.R
 import org.dipalme.proteApp.data.BACKGROUND
 import org.dipalme.proteApp.data.CalendarAvailabilityState
 import org.dipalme.proteApp.ui.liveEvents.SingleLiveEvent
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 class CalendarViewModel : ViewModel() {
     val calendarAvailability = MutableLiveData<CalendarAvailabilityState>()

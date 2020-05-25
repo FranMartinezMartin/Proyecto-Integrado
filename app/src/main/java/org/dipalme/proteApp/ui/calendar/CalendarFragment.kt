@@ -1,10 +1,5 @@
 package org.dipalme.proteApp.ui.calendar
 
-<<<<<<< Updated upstream
-import android.content.Context
-=======
-import android.graphics.Color
->>>>>>> Stashed changes
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,27 +8,17 @@ import android.view.ViewGroup
 import android.view.ViewStub
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
-<<<<<<< Updated upstream
-import androidx.lifecycle.ViewModelProviders
-import org.dipalme.proteApp.R
-import java.util.*
-=======
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.github.sundeepk.compactcalendarview.CompactCalendarView
 import com.github.sundeepk.compactcalendarview.CompactCalendarView.CompactCalendarViewListener
 import com.github.sundeepk.compactcalendarview.domain.Event
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import org.dipalme.proteApp.R
-import java.text.SimpleDateFormat
 import java.util.*
 
->>>>>>> Stashed changes
 
 @Suppress("DEPRECATION")
 class CalendarFragment : Fragment() {
-
-    private lateinit var calendarViewModel: CalendarViewModel
     private lateinit var calendar: CompactCalendarView
     private lateinit var rbDisp1: RadioButton
     private lateinit var rbDisp2: RadioButton
@@ -53,15 +38,9 @@ class CalendarFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_calendar, container, false)
         loadViews(root)
-<<<<<<< Updated upstream
-
-        calendar.
-
-=======
         calendarlistener()
         loading.visibility = View.VISIBLE
         initViewModel()
->>>>>>> Stashed changes
         return root
     }
 
@@ -93,7 +72,7 @@ class CalendarFragment : Fragment() {
             loading.visibility = View.GONE
         })
 
-        viewModel.calendarAvailability.observe(this, androidx.lifecycle.Observer {
+        viewModel.calendarAvailability.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             btAvailability.isEnabled =
                 it.available_00_06 != null && it.available_00_12 != null && it.available_00_24 != null && it.available_06_12 != null && it.available_06_18 != null && it.available_12_18 != null && it.available_12_24 != null && it.available_18_24 != null
             when (it.available_00_06) {
@@ -178,41 +157,8 @@ class CalendarFragment : Fragment() {
     }
 
 
-<<<<<<< Updated upstream
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private fun loadViews( root: View){
-        calendar = root.findViewById(R.id.calendarView)
-=======
     private fun loadViews(root: View) {
         calendar = root.findViewById(R.id.compactcalendar_view)
->>>>>>> Stashed changes
         rbDisp1 = root.findViewById(R.id.rbDisp1)
         rbDisp2 = root.findViewById(R.id.rbDisp2)
         rbDisp3 = root.findViewById(R.id.rbDisp3)
@@ -222,5 +168,6 @@ class CalendarFragment : Fragment() {
         rbDisp7 = root.findViewById(R.id.rbDisp7)
         rbDisp8 = root.findViewById(R.id.rbDisp8)
         loading = root.findViewById(R.id.vsLoading)
+
     }
 }

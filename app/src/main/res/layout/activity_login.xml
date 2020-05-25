@@ -96,10 +96,11 @@
         app:layout_constraintEnd_toEndOf="@+id/indicative"
         app:layout_constraintStart_toStartOf="@+id/indicative" />
 
-    <org.dipalme.proteApp.ui.LoadingView
-        android:id="@+id/loading"
+    <ViewStub
+        android:id="@+id/vsLoading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout="@layout/view_loading"
         android:visibility="gone"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />

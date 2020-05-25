@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.ViewStub
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
@@ -23,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var etIndicative: EditText
     private lateinit var etPassword: EditText
     private lateinit var btLogin: Button
-    private lateinit var loading: ProgressBar
+    private lateinit var loading: ViewStub
     private lateinit var errorText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         etIndicative = findViewById(R.id.indicative)
         etPassword = findViewById(R.id.password)
         btLogin = findViewById(R.id.login_button)
-        loading = findViewById(R.id.loading)
+        loading = findViewById(R.id.vsLoading)
         errorText = findViewById(R.id.tvError)
         viewModel = LoginViewModel()
         initViewModel()

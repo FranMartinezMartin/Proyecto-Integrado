@@ -14,7 +14,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.extension.showErrorDialog
 import org.dipalme.proteApp.navigation_drawer
@@ -62,24 +61,16 @@ class LoginActivity : AppCompatActivity() {
          * Sing-in button functionality
          */
         btLogin.setOnClickListener {
-<<<<<<< Updated upstream
-            viewModel.UserLog(etIndicative.text.toString(), etPassword.text.toString())
-=======
             viewModel.UserLog(this, etIndicative.text.toString(), etPassword.text.toString())
             loading.visibility = View.VISIBLE
->>>>>>> Stashed changes
         }
-
     }
 
     private fun initViewModel() {
         viewModel =
             ViewModelProviders.of(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
 
-<<<<<<< Updated upstream
-=======
         viewModel.checkLoggedUser(this)
->>>>>>> Stashed changes
 
         viewModel.loginDataState.observe(this, Observer {
             btLogin.isEnabled = it.validIndicative == true && it.validPassword == true

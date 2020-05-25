@@ -1,9 +1,12 @@
 package org.dipalme.proteApp.ui.calendar
 
+import android.graphics.Color
+import android.util.EventLog
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.sundeepk.compactcalendarview.CompactCalendarView
+import com.github.sundeepk.compactcalendarview.domain.Event
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import org.dipalme.proteApp.NavigationEvent
@@ -28,23 +31,11 @@ class CalendarViewModel : ViewModel() {
             db.collection("Servicios").get().addOnSuccessListener { result ->
                 if (result != null) {
                     for (document in result) {
-                        var serviceDate: Timestamp = document.data?.get("fecha") as Timestamp
-                        if (serviceDate != null) {
-                            Log.w("Fecha servicio", "${document.id}"+serviceDate.toDate().time)
-                            /*
-                                Forma de crear eventos y añadirlos al calendario
-                                var myCalendar = Calendar.getInstance()
-
-                                myCalendar.set(Calendar.YEAR, 2020)
-                                myCalendar.set(Calendar.MONTH, 5)
-                                myCalendar.set(Calendar.DAY_OF_MONTH, 23)
-
-                                var event = Event (Color.BLUE, myCalendar.getTimeInMillis(), "Evento de prueba en el dia 23/05/2020")
-                                calendar.addEvent(event)
-                            */
-                        } else {
-                            errorEvent.postValue(R.string.ER_004.toString())
+                        var event = document.getTimestamp("fecha")?.toDate()?.time?.let {
+                            Event(Color.BLUE, it, document.getString("nombre"))
                         }
+                        compactCalendar.addEvent(event)
+                        navigationEvent.postValue(NavigationEvent.NavigationCalendar)
                     }
                 } else {
                     errorEvent.postValue(R.string.ER_005.toString())
@@ -52,4 +43,6 @@ class CalendarViewModel : ViewModel() {
             }
         }
     }
+
+
 }

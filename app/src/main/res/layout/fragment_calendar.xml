@@ -7,22 +7,30 @@
     android:background="#CCE65100"
     tools:context=".ui.calendar.CalendarFragment">
 
-    <ViewStub
-        android:id="@+id/vsLoading"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout="@layout/view_loading"
-        android:visibility="gone"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            popupTheme="@style/AppTheme.PopupOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -35,7 +43,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="5dp"
-                android:background="#FFFFFF"
+                android:background="@android:color/background_light"
                 android:gravity="center"
                 android:text="month"
                 android:textAllCaps="false"
@@ -53,7 +61,7 @@
                 android:layout_margin="5dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                app:compactCalendarBackgroundColor="@android:color/white"
+                app:compactCalendarBackgroundColor="@color/cardview_light_background"
                 app:compactCalendarCurrentDayBackgroundColor="#FF0000"
                 app:compactCalendarCurrentSelectedDayBackgroundColor="#34A5ED"
                 app:compactCalendarMultiEventIndicatorColor="#0924EF"
@@ -185,6 +193,17 @@
                 android:text="@string/disp8_00_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rbDisp6" />
+
+            <ViewStub
+                android:id="@+id/vsLoading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout="@layout/view_loading"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

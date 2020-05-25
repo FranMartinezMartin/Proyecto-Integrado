@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewStub
 import android.widget.RadioButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.github.sundeepk.compactcalendarview.CompactCalendarView
@@ -14,6 +15,10 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView.CompactCalend
 import com.github.sundeepk.compactcalendarview.domain.Event
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import org.dipalme.proteApp.R
+import org.dipalme.proteApp.extension.showCalendarDialog
+import org.dipalme.proteApp.extension.showErrorDialog
+import java.time.LocalDate
+import java.time.format.TextStyle
 import java.util.*
 
 
@@ -28,36 +33,40 @@ class CalendarFragment : Fragment() {
     private lateinit var rbDisp6: RadioButton
     private lateinit var rbDisp7: RadioButton
     private lateinit var rbDisp8: RadioButton
+    private lateinit var tvmonth: TextView
     private lateinit var viewModel: CalendarViewModel
     private lateinit var loading: ViewStub
+    private lateinit var thisView: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_calendar, container, false)
-        loadViews(root)
+        thisView = inflater.inflate(R.layout.fragment_calendar, container, false)
+        loadViews(thisView)
         calendarlistener()
         loading.visibility = View.VISIBLE
         initViewModel()
-        return root
+        return thisView
     }
 
     fun calendarlistener() {
         calendar.setListener(object : CompactCalendarViewListener {
             override fun onDayClick(dateClicked: Date) {
                 val events: List<Event> = calendar.getEvents(dateClicked)
-                /**
-                 * Mostrar dialogo con el dia seleccionado y los eventos que haya, solo hora y nombre del evento (nombre = lugar + actividad)
-                 */
+                thisView.context.showCalendarDialog(events)
             }
 
             override fun onMonthScroll(firstDayOfNewMonth: Date) {
                 Log.d("TAG", "Month was scrolled to: $firstDayOfNewMonth")
-                /**
-                 * Cambiar mes en tvMonth
-                 */
+                if (firstDayOfNewMonth.month < 1){
+                    firstDayOfNewMonth.month = 12
+                }
+                if (firstDayOfNewMonth.month > 12){
+                    firstDayOfNewMonth.month = 1
+                }
+                tvmonth.text = resources.getStringArray(R.array.months)[firstDayOfNewMonth.month]
             }
         })
     }
@@ -70,6 +79,10 @@ class CalendarFragment : Fragment() {
 
         viewModel.navigationEvent.observe(this, androidx.lifecycle.Observer {
             loading.visibility = View.GONE
+        })
+
+        viewModel.errorEvent.observe(this, androidx.lifecycle.Observer {
+            thisView.context.showErrorDialog(it)
         })
 
         viewModel.calendarAvailability.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
@@ -153,9 +166,7 @@ class CalendarFragment : Fragment() {
                 null -> rbDisp8.isChecked = false
             }
         })
-
     }
-
 
     private fun loadViews(root: View) {
         calendar = root.findViewById(R.id.compactcalendar_view)
@@ -168,6 +179,9 @@ class CalendarFragment : Fragment() {
         rbDisp7 = root.findViewById(R.id.rbDisp7)
         rbDisp8 = root.findViewById(R.id.rbDisp8)
         loading = root.findViewById(R.id.vsLoading)
+        tvmonth = root.findViewById(R.id.tvMonth)
+        val c1 = Calendar.getInstance()
+        tvmonth.text = resources.getStringArray(R.array.months)[c1.get(Calendar.MONTH)]
 
     }
 }

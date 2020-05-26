@@ -1,14 +1,11 @@
 package org.dipalme.proteApp.extension
 
-import android.app.usage.UsageEvents
 import android.content.Context
 import com.github.sundeepk.compactcalendarview.domain.Event
 import org.dipalme.proteApp.R
 import org.jetbrains.anko.alert
 import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.util.regex.Pattern
-import kotlin.time.hours
 
 object Extension {
     const val MIN_PASS_LENGTH = 10
@@ -31,7 +28,7 @@ fun String.isPasswordValid(): Boolean =
 
 fun Context.showErrorDialog(error: String) {
     alert {
-        message(error)
+        message("Error: $error")
         positiveButton(R.string.accept) {}
     }.show()
 }
@@ -45,6 +42,5 @@ fun Context.showCalendarDialog(events: List<Event>) {
             text += date + " - " + event.data.toString()+"\n"
         }
         message(text)
-        //positiveButton(R.string.accept) {}
     }.show()
 }

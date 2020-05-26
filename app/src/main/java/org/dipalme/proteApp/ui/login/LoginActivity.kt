@@ -25,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var btLogin: Button
     private lateinit var loading: ViewStub
     private lateinit var errorText: TextView
-    private lateinit var loading: ViewStub
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)

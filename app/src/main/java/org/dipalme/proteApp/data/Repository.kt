@@ -3,7 +3,6 @@ package org.dipalme.proteApp.data
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import org.dipalme.proteApp.model.Volunteer
@@ -39,9 +38,5 @@ class Repository(contextReceived: Context) {
             i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             ContextCompat.startActivity(context, i, null)
         }
-    }
-
-    fun getSharedPreferences(): SharedPreferences {
-        return context.defaultSharedPreferences
     }
 }

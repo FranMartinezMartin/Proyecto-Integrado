@@ -92,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
         })
         viewModel.errorEvent.observe(this, Observer {
             loading.visibility = View.GONE
-            this.showErrorDialog(it)
+            this.showErrorDialog(getString(it))
         })
         viewModel.navigationEvent.observe(this, Observer {
             loading.visibility = View.GONE

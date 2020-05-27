@@ -1,211 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#CCE65100"
-    tools:context=".ui.calendar.CalendarFragment">
+    android:layout_height="wrap_content"
+    android:background="#CCE65100">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:context=".ui.calendar.CalendarFragment">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            popupTheme="@style/AppTheme.PopupOverlay"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" />
-    </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tvMonth"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="5dp"
-                android:background="@android:color/background_light"
-                android:gravity="center"
-                android:text="month"
-                android:textAllCaps="false"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.github.sundeepk.compactcalendarview.CompactCalendarView
-                android:id="@+id/compactcalendar_view"
-                android:layout_width="0dp"
-                android:layout_height="300dp"
-                android:layout_margin="5dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:compactCalendarCurrentDayBackgroundColor="#FF0000"
-                app:compactCalendarCurrentSelectedDayBackgroundColor="#34A5ED"
-                app:compactCalendarMultiEventIndicatorColor="#0924EF"
-                app:compactCalendarTargetHeight="360dp"
-                app:compactCalendarTextColor="@android:color/black"
-                app:compactCalendarTextSize="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.523"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvMonth" />
-
-            <TextView
-                android:id="@+id/availabilityText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="10dp"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:text="@string/disp_calendar"
-                android:textColor="#000000"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/compactcalendar_view" />
-
-            <Button
-                android:id="@+id/btAvailability"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/btn_rounded_calendar"
-                android:text="@string/send"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cbDisp7" />
-
-            <CheckBox
-                android:id="@+id/cbDisp1"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/btn_rounded_calendar"
-                android:text="@string/disp1_00_06"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/availabilityText" />
-
-            <CheckBox
-                android:id="@+id/cbDisp2"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/btn_rounded_calendar"
-                android:text="@string/disp2_08_12"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/availabilityText" />
-
-            <CheckBox
-                android:id="@+id/cbDisp3"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/btn_rounded_calendar"
-                android:text="@string/disp3_12_18"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cbDisp1" />
-
-            <CheckBox
-                android:id="@+id/cbDisp4"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/btn_rounded_calendar"
-                android:text="@string/disp4_18_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cbDisp2" />
-
-            <CheckBox
-                android:id="@+id/cbDisp5"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/btn_rounded_calendar"
-                android:text="@string/disp5_00_12"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cbDisp3" />
-
-            <CheckBox
-                android:id="@+id/cbDisp6"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/btn_rounded_calendar"
-                android:text="@string/disp6_18_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cbDisp4" />
-
-            <CheckBox
-                android:id="@+id/cbDisp7"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/btn_rounded_calendar"
-                android:text="@string/disp7_12_24"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cbDisp5" />
-
-            <CheckBox
-                android:id="@+id/cbDisp8"
-                android:layout_width="130dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/btn_rounded_calendar"
-                android:text="@string/disp8_00_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cbDisp6" />
-
-            <ViewStub
-                android:id="@+id/vsLoading"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout="@layout/view_loading"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-    </ScrollView>
+        <TextView
+            android:id="@+id/tvMonth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="5dp"
+            android:background="@android:color/background_light"
+            android:gravity="center"
+            android:text="month"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.github.sundeepk.compactcalendarview.CompactCalendarView
+            android:id="@+id/compactcalendar_view"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            app:compactCalendarCurrentDayBackgroundColor="#FF0000"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="#34A5ED"
+            app:compactCalendarMultiEventIndicatorColor="#0924EF"
+            app:compactCalendarTargetHeight="360dp"
+            app:compactCalendarTextColor="@android:color/black"
+            app:compactCalendarTextSize="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMonth" />
+
+        <CheckBox
+            android:id="@+id/cbDisp5"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_rounded_calendar"
+            android:text="@string/disp5_00_12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbDisp3" />
+
+        <ViewStub
+            android:id="@+id/vsLoading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/view_loading"
+            android:visibility="gone" />
+
+        <CheckBox
+            android:id="@+id/cbDisp1"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_rounded_calendar"
+            android:text="@string/disp1_00_06"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/availabilityText" />
+
+        <CheckBox
+            android:id="@+id/cbDisp4"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/btn_rounded_calendar"
+            android:text="@string/disp4_18_24"
+            app:layout_constraintBottom_toBottomOf="@+id/cbDisp3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cbDisp3" />
+
+        <CheckBox
+            android:id="@+id/cbDisp2"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/btn_rounded_calendar"
+            android:text="@string/disp2_08_12"
+            app:layout_constraintBottom_toBottomOf="@+id/cbDisp1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cbDisp1" />
+
+        <TextView
+            android:id="@+id/availabilityText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="10dp"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:text="@string/disp_calendar"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/compactcalendar_view" />
+
+        <Button
+            android:id="@+id/btAvailability"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/btn_rounded_calendar"
+            android:text="@string/send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbDisp7" />
+
+        <CheckBox
+            android:id="@+id/cbDisp8"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/btn_rounded_calendar"
+            android:text="@string/disp8_00_24"
+            app:layout_constraintBottom_toBottomOf="@+id/cbDisp7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cbDisp7" />
+
+        <CheckBox
+            android:id="@+id/cbDisp3"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_rounded_calendar"
+            android:text="@string/disp3_12_18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbDisp1" />
+
+        <CheckBox
+            android:id="@+id/cbDisp6"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/btn_rounded_calendar"
+            android:text="@string/disp6_18_24"
+            app:layout_constraintBottom_toBottomOf="@+id/cbDisp5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cbDisp5" />
+
+        <CheckBox
+            android:id="@+id/cbDisp7"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_rounded_calendar"
+            android:text="@string/disp7_12_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbDisp5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

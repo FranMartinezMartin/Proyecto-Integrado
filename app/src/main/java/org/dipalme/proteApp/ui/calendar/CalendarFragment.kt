@@ -13,10 +13,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.github.sundeepk.compactcalendarview.CompactCalendarView
 import com.github.sundeepk.compactcalendarview.CompactCalendarView.CompactCalendarViewListener
 import com.github.sundeepk.compactcalendarview.domain.Event
-import kotlinx.android.synthetic.main.fragment_calendar.*
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.extension.showCalendarDialog
 import org.dipalme.proteApp.extension.showErrorDialog
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -36,6 +36,7 @@ class CalendarFragment : Fragment() {
     private lateinit var btAvailability: Button
     private lateinit var loading: ViewStub
     private lateinit var thisView: View
+    private lateinit var dayClicked: Date
 
 
     override fun onCreateView(
@@ -57,6 +58,7 @@ class CalendarFragment : Fragment() {
             override fun onDayClick(dateClicked: Date) {
                 val events: List<Event> = calendar.getEvents(dateClicked)
                 thisView.context.showCalendarDialog(events)
+                dayClicked = dateClicked
             }
 
             override fun onMonthScroll(firstDayOfNewMonth: Date) {
@@ -175,7 +177,7 @@ class CalendarFragment : Fragment() {
         })
 
         viewModel.errorEvent.observe(this, androidx.lifecycle.Observer {
-            thisView.context.showErrorDialog(it)
+            thisView.context.showErrorDialog(getString(it))
         })
 
         viewModel.calendarAvailability.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
@@ -190,7 +192,7 @@ class CalendarFragment : Fragment() {
         })
 
         viewModel.successEvent.observe(this, androidx.lifecycle.Observer {
-            thisView.context.showErrorDialog(it)
+            thisView.context.showErrorDialog(getString(it))
         })
     }
 
@@ -210,7 +212,8 @@ class CalendarFragment : Fragment() {
         val c1 = Calendar.getInstance()
         tvmonth.text = resources.getStringArray(R.array.months)[c1.get(Calendar.MONTH)]
         btAvailability.setOnClickListener {
-            viewModel.saveAvailability()
+            val formatter = SimpleDateFormat("dd-MMM-yyyy")
+            viewModel.saveAvailability(formatter.format(dayClicked), thisView.context)
         }
     }
 }

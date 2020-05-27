@@ -28,17 +28,17 @@ fun String.isPasswordValid(): Boolean =
 
 fun Context.showErrorDialog(error: String) {
     alert {
-        message("Error: $error")
+        message(error)
         positiveButton(R.string.accept) {}
     }.show()
 }
 
 fun Context.showCalendarDialog(events: List<Event>) {
     alert {
-        var text: String = ""
+        var text = ""
         val formatter = DateFormat.getTimeInstance()
         for (event in events) {
-            var date = formatter.format(event.timeInMillis)
+            val date = formatter.format(event.timeInMillis)
             text += date + " - " + event.data.toString()+"\n"
         }
         message(text)

@@ -19,7 +19,7 @@ import org.dipalme.proteApp.ui.liveEvents.SingleLiveEvent
 class LoginViewModel : ViewModel() {
     val loginDataState = MutableLiveData<LoginDataState>()
     val navigationEvent: SingleLiveEvent<NavigationEvent> = SingleLiveEvent()
-    val errorEvent: SingleLiveEvent<String> = SingleLiveEvent()
+    val errorEvent: SingleLiveEvent<Int> = SingleLiveEvent()
 
     init {
         loginDataState.value = LoginDataState()
@@ -59,17 +59,17 @@ class LoginViewModel : ViewModel() {
                             r.getString("telefono")
                         )
                         Log.w("Volunteer ID: LoginViewModel()", volunteer.toString())
-                        if (volunteer?.active != null) {
+                        if (volunteer.active != null) {
                             Repository(context).setCurrentVolunteer(volunteer)
                         }
                     } else {
-                        errorEvent.postValue(R.string.ER_002.toString())
+                        errorEvent.postValue(R.string.ER_002)
                     }
                 } else {
-                    errorEvent.postValue(R.string.ER_001.toString())
+                    errorEvent.postValue(R.string.ER_001)
                 }
             }.addOnFailureListener {
-                errorEvent.postValue(R.string.ER_001.toString())
+                errorEvent.postValue(R.string.ER_001)
             }
         }
     }

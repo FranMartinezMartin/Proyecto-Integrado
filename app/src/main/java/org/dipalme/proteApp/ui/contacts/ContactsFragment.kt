@@ -10,14 +10,18 @@ import org.dipalme.proteApp.R
 
 class ContactsFragment : Fragment() {
 
-    private lateinit var contactsViewModel: ContactsViewModel
+    private lateinit var viewModel: ContactsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_contacts, container, false)
+        val root = inflater.inflate(R.layout.fragment_contacts, container, false)
+        initViewModel()
+        return root
     }
 
+    private fun initViewModel(){
+
+    }
 }

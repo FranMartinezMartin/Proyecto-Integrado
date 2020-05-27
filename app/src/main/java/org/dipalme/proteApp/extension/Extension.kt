@@ -1,8 +1,10 @@
 package org.dipalme.proteApp.extension
 
 import android.content.Context
+import com.github.sundeepk.compactcalendarview.domain.Event
 import org.dipalme.proteApp.R
 import org.jetbrains.anko.alert
+import java.text.DateFormat
 import java.util.regex.Pattern
 
 object Extension {
@@ -16,8 +18,8 @@ fun isIndicativeValid(indicative: String): Boolean {
         return false
     }
 
-    var p = Pattern.compile("V-[0-9]{3}")
-    var m = p.matcher(indicative)
+    val p = Pattern.compile("V-[0-9]{3}")
+    val m = p.matcher(indicative)
     return m.find()
 }
 
@@ -28,5 +30,17 @@ fun Context.showErrorDialog(error: String) {
     alert {
         message(error)
         positiveButton(R.string.accept) {}
+    }.show()
+}
+
+fun Context.showCalendarDialog(events: List<Event>) {
+    alert {
+        var text = ""
+        val formatter = DateFormat.getTimeInstance()
+        for (event in events) {
+            val date = formatter.format(event.timeInMillis)
+            text += date + " - " + event.data.toString()+"\n"
+        }
+        message(text)
     }.show()
 }

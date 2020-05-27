@@ -25,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var btLogin: Button
     private lateinit var loading: ViewStub
     private lateinit var errorText: TextView
-    private lateinit var loading: ViewStub
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
@@ -93,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
         })
         viewModel.errorEvent.observe(this, Observer {
             loading.visibility = View.GONE
-            this.showErrorDialog(it)
+            this.showErrorDialog(getString(it))
         })
         viewModel.navigationEvent.observe(this, Observer {
             loading.visibility = View.GONE

@@ -18,6 +18,7 @@
     <string name="nav_header_subtitle">Indicativo</string>
     <string name="nav_header_desc">Cabecera</string>
     <string name="logout">Cerrar Sesión</string>
+    <string name="profile">Perfil</string>
     <string name="menu_home">Noticias</string>
     <string name="menu_calendar">Calendario</string>
     <string name="menu_services">Servicios</string>
@@ -65,6 +66,9 @@
     <string name="send">Enviar</string>
     <string name="success">Dispinibilidad guardada correctamente</string>
 
+    <!-- Strings related to Contact menu -->
+    <string name="phone">Teléfono:</string>
+
     <!-- Errors -->
     <string name="ER_001">Indicativo incorrecto</string>
     <string name="ER_002">Contraseña incorrecta</string>
@@ -72,6 +76,8 @@
     <string name="ER_004">Sin datos</string>
     <string name="ER_005">No se pudo conectar con el servidor. Revise su conexión a internet.</string>
     <string name="ER_006">No se pudo guardar la disponibilidad. Revise su conexión a internet.</string>
+    <string name="ER_007">No se pudo cargar la lista de contactos. Revise su conexión a internet.</string>
+    <string name="ER_1001">No se pudo conectar con el servidor.</string>
 
 
 </resources>

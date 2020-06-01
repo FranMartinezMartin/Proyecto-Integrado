@@ -171,15 +171,12 @@ class CalendarFragment : Fragment() {
             .get(CalendarViewModel::class.java)
 
         viewModel.loadCalendar(calendar)
-
         viewModel.navigationEvent.observe(this, androidx.lifecycle.Observer {
             loading.visibility = View.GONE
         })
-
         viewModel.errorEvent.observe(this, androidx.lifecycle.Observer {
             thisView.context.showErrorDialog(getString(it))
         })
-
         viewModel.calendarAvailability.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             btAvailability.isEnabled = it.available_00_06 == true
                     || it.available_00_12 == true
@@ -190,7 +187,6 @@ class CalendarFragment : Fragment() {
                     || it.available_12_24 == true
                     || it.available_18_24 == true
         })
-
         viewModel.successEvent.observe(this, androidx.lifecycle.Observer {
             thisView.context.showErrorDialog(getString(it))
         })
@@ -212,7 +208,7 @@ class CalendarFragment : Fragment() {
         val c1 = Calendar.getInstance()
         tvmonth.text = resources.getStringArray(R.array.months)[c1.get(Calendar.MONTH)]
         btAvailability.setOnClickListener {
-            val formatter = SimpleDateFormat("dd-MMM-yyyy")
+            val formatter = SimpleDateFormat("dd MMM yyyy")
             viewModel.saveAvailability(formatter.format(dayClicked), thisView.context)
         }
     }

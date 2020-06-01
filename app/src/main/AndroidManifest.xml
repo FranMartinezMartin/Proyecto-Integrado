@@ -9,17 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--activity android:name=".ui.services.boss.assign.BossAssignActivity"></activity-->
         <activity
-            android:name="org.dipalme.proteApp.navigation_drawer"
+            android:name=".navigation_drawer"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
-            android:name="org.dipalme.proteApp.ui.login.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

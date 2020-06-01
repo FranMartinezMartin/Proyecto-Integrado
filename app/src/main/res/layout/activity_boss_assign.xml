@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.dipalme.proteApp.ui.services.boss.assign.BossAssignActivity">
+
+    <TextView
+        android:id="@+id/tvServiceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:gravity="center"
+        android:text="Service name"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvVolunteers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/volunteers"
+        app:layout_constraintEnd_toEndOf="@+id/vol_List"
+        app:layout_constraintStart_toStartOf="@+id/vol_List"
+        app:layout_constraintTop_toBottomOf="@+id/tvServiceName" />
+
+    <TextView
+        android:id="@+id/tvVehicles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/vehicles"
+        app:layout_constraintEnd_toEndOf="@+id/vehicles_List"
+        app:layout_constraintStart_toStartOf="@+id/vehicles_List"
+        app:layout_constraintTop_toBottomOf="@+id/tvServiceName" />
+
+    <ListView
+        android:id="@+id/vol_List"
+        android:layout_width="150dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@+id/tvServiceName"
+        app:layout_constraintTop_toBottomOf="@+id/tvVolunteers">
+
+    </ListView>
+
+    <ListView
+        android:id="@+id/vehicles_List"
+        android:layout_width="150dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvServiceName"
+        app:layout_constraintTop_toBottomOf="@+id/tvVehicles" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="4dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/btn_rounded"
+        app:layout_constraintEnd_toEndOf="@+id/tvServiceName"
+        app:layout_constraintStart_toStartOf="@+id/tvServiceName"
+        app:layout_constraintTop_toBottomOf="@+id/tvServiceName" />
+
+    <Button
+        android:id="@+id/btnAccept"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="35dp"
+        android:background="@drawable/btn_assign"
+        android:text="@string/btnAccept"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <View
+        android:id="@+id/viewVolunteers"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/vol_List"
+        app:layout_constraintEnd_toEndOf="@+id/vol_List"
+        app:layout_constraintStart_toStartOf="@+id/vol_List"
+        app:layout_constraintTop_toTopOf="@+id/vol_List" />
+
+    <View
+        android:id="@+id/viewVehicles"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/vehicles_List"
+        app:layout_constraintEnd_toEndOf="@+id/vehicles_List"
+        app:layout_constraintStart_toStartOf="@+id/vehicles_List"
+        app:layout_constraintTop_toTopOf="@+id/vehicles_List" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

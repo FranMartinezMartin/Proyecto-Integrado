@@ -1,4 +1,4 @@
-package org.dipalme.proteApp.ui.services.boss
+package org.dipalme.proteApp.ui.services.boss.create
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

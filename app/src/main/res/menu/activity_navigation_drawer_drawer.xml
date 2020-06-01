@@ -13,7 +13,7 @@
             android:icon="@drawable/ic_calendar_1"
             android:title="@string/menu_calendar" />
         <item
-            android:id="@+id/nav_services"
+            android:id="@+id/nav_boss_services"
             android:icon="@drawable/ic_services_1"
             android:title="@string/menu_services" />
         <item

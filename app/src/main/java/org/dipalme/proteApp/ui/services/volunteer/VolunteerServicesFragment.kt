@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.model.Service
-import org.dipalme.proteApp.ui.services.boss.BossAssignAdapter
+import org.dipalme.proteApp.ui.services.boss.assign.BossAssignAdapter
 
 class VolunteerServicesFragment : Fragment() {
 
@@ -23,12 +23,18 @@ class VolunteerServicesFragment : Fragment() {
         var recNext = root.findViewById<RecyclerView>(R.id.recNextServices)
         var listaNext: List<Service> = listOf()
         recNext.layoutManager = LinearLayoutManager(root.context)
-        recNext.adapter = BossAssignAdapter(listaNext)
+        recNext.adapter =
+            BossAssignAdapter(
+                listaNext
+            )
 
         var recDone = root.findViewById<RecyclerView>(R.id.recDoneServices)
         var listaDone: List<Service> = listOf()
         recDone.layoutManager = LinearLayoutManager(root.context)
-        recDone.adapter = BossAssignAdapter(listaDone)
+        recDone.adapter =
+            BossAssignAdapter(
+                listaDone
+            )
 
         return root
     }

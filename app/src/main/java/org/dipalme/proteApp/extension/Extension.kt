@@ -44,9 +44,3 @@ fun Context.showCalendarDialog(events: List<Event>) {
         message(text)
     }.show()
 }
-
-fun Context.showContactInfo(position: String, name: String, phone: String) {
-    alert {
-        message(position + "\n" + name + "\n" + getString(R.string.phone) + " " + phone)
-    }.show()
-}

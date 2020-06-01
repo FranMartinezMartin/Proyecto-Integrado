@@ -1,4 +1,4 @@
-package org.dipalme.proteApp.ui.services.boss
+package org.dipalme.proteApp.ui.services.boss.modify
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.model.Service
+import org.dipalme.proteApp.ui.services.boss.modify.BossModifyAdapter
 import java.util.*
 
 class BossModifyFragment : Fragment() {
@@ -30,7 +31,8 @@ class BossModifyFragment : Fragment() {
 
         var lista: List<Service> = listOf(service, service2, service3, service4)
         recycler.layoutManager = LinearLayoutManager(root.context)
-        recycler.adapter = BossModifyAdapter(lista)
+        recycler.adapter =
+            BossModifyAdapter(lista)
 
         return root
     }

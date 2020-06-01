@@ -9,13 +9,6 @@
     android:layout_height="wrap_content"
     tools:context=".navigation_drawer">
 
-    <ViewStub
-        android:id="@+id/vsLoading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout="@layout/view_loading"
-        android:visibility="gone" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

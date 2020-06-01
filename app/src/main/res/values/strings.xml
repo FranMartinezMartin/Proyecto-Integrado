@@ -35,6 +35,7 @@
     <string name="place">Lugar:</string>
     <string name="volunteers">Voluntarios:</string>
     <string name="vehicles">Vehiculos: </string>
+    <string name="infoMessage">No se han encontrado servicios en esa fecha</string>
 
     <!-- Alert Dialogs common -->
     <string name="accept">Aceptar</string>

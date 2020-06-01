@@ -13,7 +13,6 @@ import org.dipalme.proteApp.data.BACKGROUND
 import org.dipalme.proteApp.data.CalendarAvailabilityState
 import org.dipalme.proteApp.data.Repository
 import org.dipalme.proteApp.ui.liveEvents.SingleLiveEvent
-import java.time.LocalDate
 
 
 class CalendarViewModel : ViewModel() {

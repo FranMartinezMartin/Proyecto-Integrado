@@ -24,17 +24,13 @@ class VolunteerServicesFragment : Fragment() {
         var listaNext: List<Service> = listOf()
         recNext.layoutManager = LinearLayoutManager(root.context)
         recNext.adapter =
-            BossAssignAdapter(
-                listaNext
-            )
+            BossAssignAdapter(listaNext, root.context)
 
         var recDone = root.findViewById<RecyclerView>(R.id.recDoneServices)
         var listaDone: List<Service> = listOf()
         recDone.layoutManager = LinearLayoutManager(root.context)
         recDone.adapter =
-            BossAssignAdapter(
-                listaDone
-            )
+            BossAssignAdapter(listaDone, root.context)
 
         return root
     }

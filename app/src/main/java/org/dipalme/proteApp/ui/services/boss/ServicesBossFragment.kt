@@ -29,19 +29,17 @@ class ServicesBossFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_boss_services, container, false)
-        loading = root.findViewById(R.id.vsLoading)
-        loading.visibility = View.VISIBLE
-        initViewModel()
         thisContext = root.context
         loadBossFragment(root)
+        initViewModel()
         return root
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this,ServicesViewModelFactory()).get(ServicesViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ServicesViewModelFactory())
+            .get(ServicesViewModel::class.java)
 
         viewModel.servicesDataState.observe(viewLifecycleOwner, Observer {
-            loading.visibility = View.GONE
         })
     }
 
@@ -62,8 +60,10 @@ class ServicesBossFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 pager.currentItem = tab.position
             }
-            override fun onTabUnselected(tab: TabLayout.Tab) {  }
-            override fun onTabReselected(tab: TabLayout.Tab) {  }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
         })
     }
+
 }

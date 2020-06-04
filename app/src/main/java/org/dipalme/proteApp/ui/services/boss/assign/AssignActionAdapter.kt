@@ -2,14 +2,13 @@ package org.dipalme.proteApp.ui.services.boss.assign
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
+import android.widget.BaseAdapter
+import android.widget.ListView
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.model.Service
@@ -17,8 +16,8 @@ import org.dipalme.proteApp.model.Vehicle
 import org.dipalme.proteApp.model.Volunteer
 import java.text.SimpleDateFormat
 
-class BossAssignAdapter(private val services: List<Service>, context: Context) :
-    RecyclerView.Adapter<BossAssignAdapter.ServicesHolder>() {
+class AssignActionAdapter(private val services: List<Service>, context: Context) :
+    RecyclerView.Adapter<AssignActionAdapter.ServicesHolder>() {
 
     private val contextPassed = context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicesHolder {
@@ -40,17 +39,17 @@ class BossAssignAdapter(private val services: List<Service>, context: Context) :
         holder.date.text = formatter.format(service.date)
 
         /**
-        val adapter = ListVolunteerAdapter(contextPassed, serv.volunteersList)
+        val adapter = ListVolunteerAdapter(contextPassed, service.volunteersList)
         holder.volunteerList.adapter = adapter
 
-
-        val adapter = ListVehicleAdapter(contextPassed, serv.vehicleList)
+        val adapter = ListVehicleAdapter(contextPassed, service.vehicleList)
         holder.vehiclesList.adapter = adapter
          **/
+
         holder.frame.setOnClickListener {
             val i = Intent(contextPassed, BossAssignActivity::class.java)
             i.putExtra("service id", service.id)
-            startActivity(contextPassed, i, null)
+            ContextCompat.startActivity(contextPassed, i, null)
         }
     }
 
@@ -62,7 +61,6 @@ class BossAssignAdapter(private val services: List<Service>, context: Context) :
         val vehiclesList: ListView = itemView.findViewById(R.id.vehiclesList)
         val frame = itemView.findViewById<View>(R.id.frame)
     }
-
 
     class ListVolunteerAdapter(
         private val context: Context,
@@ -115,6 +113,9 @@ class BossAssignAdapter(private val services: List<Service>, context: Context) :
             return dataSource.size
         }
     }
-
-
 }
+
+
+
+
+

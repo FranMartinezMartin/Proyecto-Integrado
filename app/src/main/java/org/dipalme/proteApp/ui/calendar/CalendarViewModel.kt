@@ -51,8 +51,7 @@ class CalendarViewModel : ViewModel() {
             val volunteer = Repository(context).getCurrentVolunteer()
             val db = FirebaseFirestore.getInstance()
 
-            db.collection("Disponibilidad").document(day).collection(volunteer?.name.toString())
-                .document("V-" + volunteer?.indicative.toString())
+            db.collection("Disponibilidad").document(day).collection("voluntarios").document(volunteer?.name.toString())
                 .set(
                     mapOf(
                         "00-06" to calendarAvailability.value?.available_00_06,

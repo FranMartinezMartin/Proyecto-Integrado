@@ -1,18 +1,23 @@
 package org.dipalme.proteApp.ui.services.boss.assign
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewStub
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_boss_assign.*
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.extension.showErrorDialog
-import org.dipalme.proteApp.ui.customDialog.CustomAssignDialog
-import java.util.*
+import org.dipalme.proteApp.model.ServiceData
+import org.dipalme.proteApp.ui.customDialog.CustomAssignDialogVolunteer
+import org.dipalme.proteApp.ui.customDialog.CustomAssingDialogVehicle
 
 class BossAssignActivity : AppCompatActivity() {
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
@@ -23,35 +28,41 @@ class BossAssignActivity : AppCompatActivity() {
     private lateinit var viewModel: AssignViewModel
     private lateinit var loading: ViewStub
 
-    private lateinit var serviceDate: Date
+    private lateinit var service: ServiceData
+    var volSaved: MutableList<String> = mutableListOf()
+    var vehiSaved: MutableList<String> = mutableListOf()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_boss_assign)
         loadViews()
         loading.visibility = View.VISIBLE
-        initView()
-        val serviceID = intent.getStringExtra("service id")
-        val service = viewModel.getService(serviceID)
+        initViewModel()
+        val id = intent.getStringExtra("serviceID")
+        viewModel.getService(id)
+
+        viewVolunteers.setOnClickListener {
+            loading.visibility = View.VISIBLE
+            viewModel.volunteersList(service)
+        }
+
+        viewVehicles.setOnClickListener {
+            loading.visibility = View.VISIBLE
+            viewModel.vehiclesList(service)
+        }
 
         btnAccept.setOnClickListener {
-            viewModel.saveLists()
+            if (volSaved.isNotEmpty() || vehiSaved.isNotEmpty()) {
+                viewModel.saveLists(service, volSaved, vehiSaved)
+            }
+
         }
         btnBack.setOnClickListener { finish() }
 
-        viewVolunteers.setOnClickListener {
-            val fragmentManager = supportFragmentManager
-
-            val newFragment =
-                CustomAssignDialog(viewModel.volunteersList(service))
-            newFragment.show(fragmentManager, "dialog")
-        }
-        viewVehicles.setOnClickListener {
-
-        }
     }
 
-    private fun initView() {
+    private fun initViewModel() {
         viewModel =
             ViewModelProviders.of(this, AssignViewModelFactory()).get(AssignViewModel::class.java)
 
@@ -59,18 +70,44 @@ class BossAssignActivity : AppCompatActivity() {
             loading.visibility = View.GONE
         })
 
-        viewModel.errorEvent.observe(this, Observer {
-            this.showErrorDialog(getString(it))
+        viewModel.serviceEvent.observe(this, Observer {
+            service = it
+        })
+
+        viewModel.volunteerListEvent.observe(this, Observer {
+            val fragmentManager = supportFragmentManager
+            val newFragment = CustomAssignDialogVolunteer(it, viewModel)
+            newFragment.show(fragmentManager, "dialog")
+            loading.visibility = View.GONE
+        })
+        viewModel.vehicleListEvent.observe(this, Observer {
+            val fragmentManager = supportFragmentManager
+            val newFragment = CustomAssingDialogVehicle(it, viewModel)
+            newFragment.show(fragmentManager, "dialog")
             loading.visibility = View.GONE
         })
 
-        viewModel.navigationEvent.observe(this, Observer {
+        viewModel.volunteerListViewEvent.observe(this, Observer {
+            volSaved = it.getList()
+            volunteerList.adapter = MyAdapter(this, it.getList())
+        })
+        viewModel.vehicleListViewEvent.observe(this, Observer {
+            vehiSaved = it.getList()
+            vehicleList.adapter = MyAdapter(this, it.getList())
+        })
+
+        viewModel.errorEvent.observe(this, Observer {
+            this.showErrorDialog(getString(it))
             loading.visibility = View.GONE
         })
 
         viewModel.infoEvent.observe(this, Observer {
             this.showErrorDialog(getString(it))
             loading.visibility = View.GONE
+        })
+
+        viewModel.navigationEvent.observe(this, Observer {
+            finish()
         })
     }
 
@@ -83,5 +120,33 @@ class BossAssignActivity : AppCompatActivity() {
         vehicleList = findViewById(R.id.vehicles_List)
         loading = findViewById(R.id.vsLoading)
         viewModel = AssignViewModel()
+    }
+
+    private class MyAdapter(context: Context, list: MutableList<String>) : BaseAdapter() {
+        private val c: Context = context
+        private val data = list
+        val inflater: LayoutInflater =
+            c.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+            val rowView = inflater.inflate(R.layout.item_list_view, parent, false)
+            val textView = rowView.findViewById<TextView>(R.id.tvListView)
+            textView.text = data[position]
+            return rowView
+
+        }
+
+        override fun getItem(position: Int): Any {
+            return position
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getCount(): Int {
+            return data.size
+        }
+
     }
 }

@@ -21,7 +21,7 @@ class DrawerViewModel: ViewModel() {
         drawerDataState.value = drawerDataState.value?.copy(
             isBoss = vol?.boss
         )
-        //return drawerDataState.value?.isBoss
-        return true
+        return drawerDataState.value?.isBoss
+        //return true
     }
 }

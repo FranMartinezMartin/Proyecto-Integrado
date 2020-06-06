@@ -16,6 +16,7 @@ import org.dipalme.proteApp.model.Service
 import org.dipalme.proteApp.model.Vehicle
 import org.dipalme.proteApp.model.Volunteer
 import java.text.SimpleDateFormat
+import java.util.*
 
 class BossAssignAdapter(private val services: List<Service>, context: Context) :
     RecyclerView.Adapter<BossAssignAdapter.ServicesHolder>() {
@@ -33,23 +34,15 @@ class BossAssignAdapter(private val services: List<Service>, context: Context) :
     override fun onBindViewHolder(holder: ServicesHolder, position: Int) {
         val service = services[position]
 
-        holder.tvServiceName.text = service.name
-        holder.placeName.text = service.place
+        holder.tvServiceName.text = service.name.toString()
+        holder.placeName.text = service.place.toString()
 
-        val formatter = SimpleDateFormat("dd MMM yyyy")
-        holder.date.text = formatter.format(service.date)
+        val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+        holder.date.text = formatter.format(service.date!!)
 
-        /**
-        val adapter = ListVolunteerAdapter(contextPassed, serv.volunteersList)
-        holder.volunteerList.adapter = adapter
-
-
-        val adapter = ListVehicleAdapter(contextPassed, serv.vehicleList)
-        holder.vehiclesList.adapter = adapter
-         **/
         holder.frame.setOnClickListener {
             val i = Intent(contextPassed, BossAssignActivity::class.java)
-            i.putExtra("service id", service.id)
+            i.putExtra("serviceID", service.id.toString())
             startActivity(contextPassed, i, null)
         }
     }
@@ -58,63 +51,6 @@ class BossAssignAdapter(private val services: List<Service>, context: Context) :
         val tvServiceName: TextView = itemView.findViewById(R.id.tvServiceName)
         val placeName: TextView = itemView.findViewById(R.id.tvPlaceName)
         val date: TextView = itemView.findViewById(R.id.date)
-        val volunteerList: ListView = itemView.findViewById(R.id.volunteersList)
-        val vehiclesList: ListView = itemView.findViewById(R.id.vehiclesList)
         val frame = itemView.findViewById<View>(R.id.frame)
     }
-
-
-    class ListVolunteerAdapter(
-        private val context: Context,
-        private val dataSource: List<Volunteer>
-    ) : BaseAdapter() {
-
-        private val inflater: LayoutInflater =
-            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val rowView = inflater.inflate(android.R.layout.simple_list_item_2, parent, false)
-            return rowView
-        }
-
-        override fun getItem(position: Int): String? {
-            return dataSource[position].name
-        }
-
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
-
-        override fun getCount(): Int {
-            return dataSource.size
-        }
-    }
-
-    class ListVehicleAdapter(
-        private val context: Context,
-        private val dataSource: List<Vehicle>
-    ) : BaseAdapter() {
-
-        private val inflater: LayoutInflater =
-            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val rowView = inflater.inflate(android.R.layout.simple_list_item_2, parent, false)
-            return rowView
-        }
-
-        override fun getItem(position: Int): String? {
-            return dataSource[position].id
-        }
-
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
-
-        override fun getCount(): Int {
-            return dataSource.size
-        }
-    }
-
-
 }

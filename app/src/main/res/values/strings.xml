@@ -81,6 +81,7 @@
     <string name="ER_008">Ha ocurrido un error al obtener la fecha actual</string>
     <string name="ER_009">Ha ocurrido un error al obtener la fecha seleccionada</string>
     <string name="ER_010">Error al cargar los datos del servicio</string>
+    <string name="ER_011">No se han podido guardar los datos</string>
         <string name="ER_1001">No se pudo conectar con el servidor.</string>
 
     <!-- Assign Action fragment -->
@@ -88,6 +89,7 @@
     <string name="btnAssignVehicles">Vehiculos</string>
     <string name="btnAccept">Aceptar</string>
     <string name="nullAvailability">No hay voluntarios disponibles</string>
+    <string name="saveListAction">Listas guardadas correctamente</string>
 
 
 </resources>

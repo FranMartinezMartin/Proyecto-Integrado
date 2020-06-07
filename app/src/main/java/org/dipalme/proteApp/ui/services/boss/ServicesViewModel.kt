@@ -7,11 +7,11 @@ import java.util.*
 
 class ServicesViewModel: ViewModel() {
     val servicesDataState = MutableLiveData<ServicesDataState>()
-    //val navigationEvent: SingleLiveEvent<NavigationEvent> = SingleLiveEvent()
-    //val errorEvent: SingleLiveEvent<Int> = SingleLiveEvent()
 
     init {
         servicesDataState.value = ServicesDataState(Calendar.getInstance())
     }
+
+
 
 }

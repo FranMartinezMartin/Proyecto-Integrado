@@ -96,7 +96,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvPlace" />
 
-                <ListView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/volunteersList"
                     android:layout_width="220dp"
                     android:layout_height="100dp"
@@ -105,9 +105,11 @@
                     android:clickable="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView6"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView6">
 
-                <ListView
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/vehiclesList"
                     android:layout_width="152dp"
                     android:layout_height="100dp"

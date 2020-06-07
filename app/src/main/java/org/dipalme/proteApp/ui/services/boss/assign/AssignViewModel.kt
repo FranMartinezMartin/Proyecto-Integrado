@@ -2,30 +2,27 @@ package org.dipalme.proteApp.ui.services.boss.assign
 
 import android.content.Context
 import android.util.Log
-import android.widget.ArrayAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
 import org.dipalme.proteApp.NavigationEvent
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.data.BACKGROUND
 import org.dipalme.proteApp.data.ServicesDataState
 import org.dipalme.proteApp.model.Service
-import org.dipalme.proteApp.model.ServiceData
 import org.dipalme.proteApp.ui.liveEvents.SingleLiveEvent
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class AssignViewModel : ViewModel() {
 
     val servicesDataState = MutableLiveData<ServicesDataState>()
     val navigationEvent: SingleLiveEvent<NavigationEvent> = SingleLiveEvent()
-    val serviceEvent: SingleLiveEvent<ServiceData> = SingleLiveEvent()
+    val serviceEvent: SingleLiveEvent<Service> = SingleLiveEvent()
     val errorEvent: SingleLiveEvent<Int> = SingleLiveEvent()
     val infoEvent: SingleLiveEvent<Int> = SingleLiveEvent()
     val volunteerListEvent: SingleLiveEvent<MutableList<String>> = SingleLiveEvent()
@@ -55,7 +52,9 @@ class AssignViewModel : ViewModel() {
                                 document.getString("lugar"),
                                 document.getTimestamp("fecha")!!.toDate(),
                                 document.id,
-                                document.getDocumentReference("contacto").toString()
+                                document.getDocumentReference("contacto"),
+                                mutableListOf(),
+                                mutableListOf()
                             )
                             list.add(service)
                         }
@@ -85,13 +84,16 @@ class AssignViewModel : ViewModel() {
             val db = FirebaseFirestore.getInstance()
             db.collection("Servicios").document(serviceID).get().addOnSuccessListener { result ->
                 if (result != null) {
-                    val serv = ServiceData(
-                        result.get("nombre").toString(), result.get("lugar").toString(),
-                        result.getTimestamp("fecha")!!.toDate(),
+                    val serviceData = Service(
+                        result.getString("nombre"),
+                        result.getString("lugar"),
+                        result.getTimestamp("fecha")?.toDate(),
                         result.id,
-                        result.getDocumentReference("contacto").toString()
+                        result.getDocumentReference("contacto"),
+                        mutableListOf(),
+                        mutableListOf()
                     )
-                    serviceEvent.postValue(serv)
+                    serviceEvent.postValue(serviceData)
                 } else {
                     errorEvent.postValue(R.string.ER_010)
                 }
@@ -99,8 +101,8 @@ class AssignViewModel : ViewModel() {
         }
     }
 
-    fun volunteersList(service: ServiceData) {
-        var volunteerList: MutableList<String> = mutableListOf()
+    fun volunteersList(service: Service) {
+        val volunteerList: MutableList<String> = mutableListOf()
         val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         BACKGROUND.submit {
             val db = FirebaseFirestore.getInstance()
@@ -119,9 +121,9 @@ class AssignViewModel : ViewModel() {
         }
     }
 
-    fun vehiclesList(service: ServiceData) {
+    fun vehiclesList(service: Service) {
         BACKGROUND.submit {
-            var vehiclesList: MutableList<String> = mutableListOf()
+            val vehiclesList: MutableList<String> = mutableListOf()
             BACKGROUND.submit {
                 val db = FirebaseFirestore.getInstance()
                 db.collection("Vehiculos").get().addOnSuccessListener { result ->
@@ -139,28 +141,64 @@ class AssignViewModel : ViewModel() {
     }
 
     fun saveLists(
-        service: ServiceData,
+        service: Service,
         volunteers: MutableList<String>,
         vehicles: MutableList<String>
     ) {
         BACKGROUND.submit {
             val db = FirebaseFirestore.getInstance()
-
             val volunteersDocument =
-                db.collection("ServiciosAsignados").document("Proximos").collection(service.name).document("Voluntarios")
+                service.name?.let {
+                    db.collection("ServiciosAsignados").document("Proximos").collection(it)
+                        .document("Voluntarios")
+                }
             val vehiclesDocument =
-                db.collection("ServiciosAsignados").document("Proximos").collection(service.name).document("Vehiculos")
+                service.name?.let {
+                    db.collection("ServiciosAsignados").document("Proximos").collection(it)
+                        .document("Vehiculos")
+                }
 
             try {
-                volunteersDocument.set(hashMapOf("voluntarios" to volunteers))
-                vehiclesDocument.set(hashMapOf("vehiculos" to vehicles))
-                infoEvent.postValue(R.string.saveListAction)
-                navigationEvent.postValue(NavigationEvent.NavigationAssignAction)
+                volunteersDocument?.set(hashMapOf("voluntarios" to volunteers))
+                vehiclesDocument?.set(hashMapOf("vehiculos" to vehicles))
+                saveListsInVolunteers(service, volunteers, vehicles)
             } catch (e: Exception) {
                 errorEvent.postValue(R.string.ER_011)
             }
         }
+    }
 
+    private fun saveListsInVolunteers(
+        service: Service,
+        volunteers: MutableList<String>,
+        vehicles: MutableList<String>
+    ) {
+        BACKGROUND.submit {
+            val timeStmp = service.date?.let { Timestamp(it) }
+            val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+
+            val dbVolunteer = FirebaseFirestore.getInstance()
+            val db = FirebaseFirestore.getInstance()
+
+            for (elem in volunteers) {
+                dbVolunteer.collection("Usuarios").whereEqualTo("nombre", elem).get()
+                    .addOnSuccessListener {
+                        db.collection("Usuarios").document(it.documents[0].id)
+                            .collection("ProximosServicios")
+                            .document("${service.name} (${formatter.format(service.date)})").set(
+                                hashMapOf(
+                                    "fecha" to timeStmp,
+                                    "id servicio" to service.id,
+                                    "id vehiculo" to vehicles
+                                )
+                            ).addOnSuccessListener {
+                                Log.w(" ##### TAG ##### ", "Datos guardados en los voluntarios")
+                                infoEvent.postValue(R.string.saveListAction)
+                                navigationEvent.postValue(NavigationEvent.NavigationAssignAction)
+                            }
+                    }
+            }
+        }
     }
 
     fun saveVolunteerLists(list: MutableList<String>) {

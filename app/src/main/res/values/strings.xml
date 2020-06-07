@@ -82,7 +82,12 @@
     <string name="ER_009">Ha ocurrido un error al obtener la fecha seleccionada</string>
     <string name="ER_010">Error al cargar los datos del servicio</string>
     <string name="ER_011">No se han podido guardar los datos</string>
-        <string name="ER_1001">No se pudo conectar con el servidor.</string>
+    <string name="ER_012">No se pudo obtener informacion del servicio</string>
+    <string name="ER_013">No se pudo obtener la lista de voluntarios</string>
+    <string name="ER_014">No se pudo obtener la lista de vehiculos</string>
+
+    <string name="ER_1001">No se pudo conectar con el servidor.</string>
+    <string name="ER_1002">Error al obtener datos del usuario</string>
 
     <!-- Assign Action fragment -->
     <string name="btnAssignVolunteers">Voluntarios</string>
@@ -90,6 +95,10 @@
     <string name="btnAccept">Aceptar</string>
     <string name="nullAvailability">No hay voluntarios disponibles</string>
     <string name="saveListAction">Listas guardadas correctamente</string>
+
+    <!-- Volunteer Service menu fragment -->
+    <string name="done">Realizados</string>
+    <string name="next">Próximos</string>
 
 
 </resources>

@@ -24,8 +24,9 @@ class BossAssignAdapter(private val services: List<Service>, context: Context) :
     private val contextPassed = context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicesHolder {
         return ServicesHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_services, parent, false),
-            contextPassed
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_services, parent, false
+            )
         )
     }
 
@@ -47,7 +48,7 @@ class BossAssignAdapter(private val services: List<Service>, context: Context) :
         }
     }
 
-    class ServicesHolder(v: View, context: Context) : RecyclerView.ViewHolder(v) {
+    class ServicesHolder(v: View) : RecyclerView.ViewHolder(v) {
         val tvServiceName: TextView = itemView.findViewById(R.id.tvServiceName)
         val placeName: TextView = itemView.findViewById(R.id.tvPlaceName)
         val date: TextView = itemView.findViewById(R.id.date)

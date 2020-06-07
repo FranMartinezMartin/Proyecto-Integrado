@@ -114,8 +114,7 @@ class BossAssignFragment : Fragment() {
         dialog.show()
     }
 
-    private val dateListener =
-        DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+    private val dateListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
             val cal = Calendar.getInstance()
             cal.set(Calendar.YEAR, year)
             cal.set(Calendar.MONTH, month)

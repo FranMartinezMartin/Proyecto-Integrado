@@ -1,9 +1,7 @@
 package org.dipalme.proteApp.ui.services.boss.assign
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_boss_assign.*
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.extension.showErrorDialog
-import org.dipalme.proteApp.model.ServiceData
+import org.dipalme.proteApp.model.Service
 import org.dipalme.proteApp.ui.customDialog.CustomAssignDialogVolunteer
 import org.dipalme.proteApp.ui.customDialog.CustomAssingDialogVehicle
 
@@ -28,9 +26,9 @@ class BossAssignActivity : AppCompatActivity() {
     private lateinit var viewModel: AssignViewModel
     private lateinit var loading: ViewStub
 
-    private lateinit var service: ServiceData
-    var volSaved: MutableList<String> = mutableListOf()
-    var vehiSaved: MutableList<String> = mutableListOf()
+    private lateinit var service: Service
+    private var volSaved: MutableList<String> = mutableListOf()
+    private var vehiSaved: MutableList<String> = mutableListOf()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +38,7 @@ class BossAssignActivity : AppCompatActivity() {
         loading.visibility = View.VISIBLE
         initViewModel()
         val id = intent.getStringExtra("serviceID")
-        viewModel.getService(id)
+        if (id != null) viewModel.getService(id)
 
         viewVolunteers.setOnClickListener {
             loading.visibility = View.VISIBLE
@@ -59,7 +57,6 @@ class BossAssignActivity : AppCompatActivity() {
 
         }
         btnBack.setOnClickListener { finish() }
-
     }
 
     private fun initViewModel() {
@@ -133,7 +130,6 @@ class BossAssignActivity : AppCompatActivity() {
             val textView = rowView.findViewById<TextView>(R.id.tvListView)
             textView.text = data[position]
             return rowView
-
         }
 
         override fun getItem(position: Int): Any {

@@ -109,7 +109,7 @@ class BossAssignActivity : AppCompatActivity() {
     }
 
     private fun loadViews() {
-        toolbar = findViewById(R.id.assignToolbar)
+        toolbar = findViewById(R.id.toolbar4)
         setSupportActionBar(toolbar)
         tvServiceName = findViewById(R.id.tvServiceName)
         tvTime = findViewById(R.id.tvTime)

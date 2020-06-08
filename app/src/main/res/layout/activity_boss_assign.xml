@@ -7,12 +7,22 @@
     tools:context="org.dipalme.proteApp.ui.services.boss.assign.BossAssignActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/assignToolbar"
+        android:id="@+id/toolbar4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_primary"
+        android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnBack"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/ic_menu_revert"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,6 +34,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="25dp"
+        android:background="#CCE65100"
         android:gravity="center"
         android:text="Service name"
         android:textSize="24sp"
@@ -31,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assignToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4" />
 
     <TextView
         android:id="@+id/tvTime"
@@ -87,7 +98,7 @@
         android:layout_width="4dp"
         android:layout_height="280dp"
         android:layout_marginTop="25dp"
-        android:background="@drawable/btn_rounded"
+        android:background="@drawable/btn_assign"
         app:layout_constraintEnd_toEndOf="@+id/tvServiceName"
         app:layout_constraintStart_toStartOf="@+id/tvServiceName"
         app:layout_constraintTop_toBottomOf="@+id/tvTime" />
@@ -125,15 +136,7 @@
         app:layout_constraintStart_toStartOf="@+id/vehicles_List"
         app:layout_constraintTop_toTopOf="@+id/vehicles_List" />
 
-    <Button
-        android:id="@+id/btnBack"
-        style="@android:style/Widget.Holo.Light.Button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:drawableBottom="@android:drawable/ic_menu_revert"
-        app:layout_constraintBottom_toBottomOf="@+id/assignToolbar"
-        app:layout_constraintStart_toStartOf="@+id/assignToolbar"
-        app:layout_constraintTop_toTopOf="@+id/assignToolbar" />
+
 
     <ViewStub
         android:id="@+id/vsLoading"

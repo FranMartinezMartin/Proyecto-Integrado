@@ -85,6 +85,7 @@
     <string name="ER_012">No se pudo obtener informacion del servicio</string>
     <string name="ER_013">No se pudo obtener la lista de voluntarios</string>
     <string name="ER_014">No se pudo obtener la lista de vehiculos</string>
+    <string name="ER_015">No se han encontrado noticias destacables</string>
 
     <string name="ER_1001">No se pudo conectar con el servidor.</string>
     <string name="ER_1002">Error al obtener datos del usuario</string>
@@ -96,9 +97,8 @@
     <string name="nullAvailability">No hay voluntarios disponibles</string>
     <string name="saveListAction">Listas guardadas correctamente</string>
 
-    <!-- Volunteer Service menu fragment -->
+    <!-- Strings related to Volunteer Service menu fragment -->
     <string name="done">Realizados</string>
     <string name="next">Próximos</string>
-
 
 </resources>

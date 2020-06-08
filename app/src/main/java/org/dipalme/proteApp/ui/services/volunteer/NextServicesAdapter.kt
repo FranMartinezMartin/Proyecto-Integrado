@@ -1,7 +1,6 @@
 package org.dipalme.proteApp.ui.services.volunteer
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class NextServicesAdapter(private val services: MutableList<Service>, contextPassed: Context) :
-    RecyclerView.Adapter<NextServicesAdapter.ServicesHolder>(), View.OnClickListener {
+    RecyclerView.Adapter<NextServicesAdapter.ServicesHolder>() {
 
     private val context = contextPassed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicesHolder {
@@ -79,10 +78,6 @@ class NextServicesAdapter(private val services: MutableList<Service>, contextPas
         val frame = itemView.findViewById<View>(R.id.frame)
         val volunteerRec: RecyclerView = itemView.findViewById(R.id.volunteersList)
         val vehicleRec: RecyclerView = itemView.findViewById(R.id.vehiclesList)
-
-    }
-
-    override fun onClick(v: View?) {
 
     }
 }

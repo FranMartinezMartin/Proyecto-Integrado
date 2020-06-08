@@ -39,7 +39,7 @@ fun Context.showCalendarDialog(events: List<Event>) {
         val formatter = DateFormat.getTimeInstance()
         for (event in events) {
             val date = formatter.format(event.timeInMillis)
-            text += date + " - " + event.data.toString()+"\n"
+            text += date + " - " + event.data.toString() + "\n"
         }
         message(text)
     }.show()

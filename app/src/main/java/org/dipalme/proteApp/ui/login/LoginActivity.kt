@@ -73,6 +73,7 @@ class LoginActivity : AppCompatActivity() {
             ViewModelProviders.of(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
 
         viewModel.checkLoggedUser(this)
+
         viewModel.loginDataState.observe(this, Observer {
             btLogin.isEnabled = it.validIndicative == true && it.validPassword == true
             when (it.validIndicative) {

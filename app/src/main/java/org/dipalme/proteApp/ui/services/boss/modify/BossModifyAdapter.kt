@@ -1,4 +1,4 @@
-package org.dipalme.proteApp.ui.services.boss
+package org.dipalme.proteApp.ui.services.boss.modify
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ class BossModifyAdapter(private val services: List<Service>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicesHolder {
         return ServicesHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.item_services_modify, parent, false
+                R.layout.item_services_compact, parent, false
             )
         )
     }
@@ -26,7 +26,7 @@ class BossModifyAdapter(private val services: List<Service>) :
     override fun onBindViewHolder(holder: ServicesHolder, position: Int) {
         val serv: Service = services[position]
 
-        holder.ServiceName.text = serv.name
+        holder.serviceName.text = serv.name
         holder.placeName.text = serv.place
     }
 
@@ -38,7 +38,7 @@ class BossModifyAdapter(private val services: List<Service>) :
             v.setOnClickListener(this)
         }
 
-        val ServiceName: TextView = itemView.findViewById(R.id.tvServiceName)
+        val serviceName: TextView = itemView.findViewById(R.id.tvServiceName)
         val placeName: TextView = itemView.findViewById(R.id.tvPlaceName)
 
 

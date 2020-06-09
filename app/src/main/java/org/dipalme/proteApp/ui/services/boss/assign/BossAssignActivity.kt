@@ -1,6 +1,10 @@
+@file:Suppress("DEPRECATION")
+
 package org.dipalme.proteApp.ui.services.boss.assign
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,9 +35,11 @@ class BossAssignActivity : AppCompatActivity() {
     private var vehiSaved: MutableList<String> = mutableListOf()
 
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_boss_assign)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         loadViews()
         loading.visibility = View.VISIBLE
         initViewModel()
@@ -47,7 +53,7 @@ class BossAssignActivity : AppCompatActivity() {
 
         viewVehicles.setOnClickListener {
             loading.visibility = View.VISIBLE
-            viewModel.vehiclesList(service)
+            viewModel.vehiclesList()
         }
 
         btnAccept.setOnClickListener {
@@ -125,6 +131,7 @@ class BossAssignActivity : AppCompatActivity() {
         val inflater: LayoutInflater =
             c.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
+        @SuppressLint("ViewHolder")
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val rowView = inflater.inflate(R.layout.item_list_view, parent, false)
             val textView = rowView.findViewById<TextView>(R.id.tvListView)

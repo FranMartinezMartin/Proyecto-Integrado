@@ -99,7 +99,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/volunteersList"
                     android:layout_width="220dp"
-                    android:layout_height="100dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="10dp"
                     android:clickable="false"
@@ -112,7 +112,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/vehiclesList"
                     android:layout_width="152dp"
-                    android:layout_height="100dp"
+                    android:layout_height="50dp"
                     android:clickable="false"
                     app:layout_constraintStart_toStartOf="@+id/tvVehicles"
                     app:layout_constraintTop_toTopOf="@+id/volunteersList" />

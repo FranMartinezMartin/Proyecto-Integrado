@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.dipalme.proteApp.ui.services.boss.assign
 
 import android.app.DatePickerDialog
@@ -8,20 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewStub
-import android.widget.DatePicker
-import android.widget.Spinner
 import android.widget.TextView
-import android.widget.ViewSwitcher
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_boss_assign.*
-import kotlinx.android.synthetic.main.fragment_boss_services.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.coroutines.channels.ticker
 import org.dipalme.proteApp.R
-import org.dipalme.proteApp.data.ServicesDataState
 import org.dipalme.proteApp.extension.showErrorDialog
 import java.text.SimpleDateFormat
 import java.util.*
@@ -85,7 +79,7 @@ class BossAssignFragment : Fragment() {
     }
 
     private fun loadDate() {
-        val sdf = SimpleDateFormat("dd MMM yyyy")
+        val sdf = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         tvDate.text = sdf.format(Calendar.getInstance().time)
         selectedDate = Calendar.getInstance().timeInMillis
         loading.visibility = View.VISIBLE
@@ -94,7 +88,7 @@ class BossAssignFragment : Fragment() {
     }
 
     private fun changeDate(cal: Date) {
-        val sdf = SimpleDateFormat("dd MMM yyyy")
+        val sdf = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         tvDate.text = sdf.format(cal.time)
         selectedDate = cal.time
         loading.visibility = View.VISIBLE
@@ -114,11 +108,11 @@ class BossAssignFragment : Fragment() {
         dialog.show()
     }
 
-    private val dateListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-            val cal = Calendar.getInstance()
-            cal.set(Calendar.YEAR, year)
-            cal.set(Calendar.MONTH, month)
-            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            viewModel.setSelectedDate(cal)
-        }
+    private val dateListener = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+        val cal = Calendar.getInstance()
+        cal.set(Calendar.YEAR, year)
+        cal.set(Calendar.MONTH, month)
+        cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+        viewModel.setSelectedDate(cal)
+    }
 }

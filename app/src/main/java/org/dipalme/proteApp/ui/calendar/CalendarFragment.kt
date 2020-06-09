@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.dipalme.proteApp.ui.calendar
 
 import android.os.Bundle
@@ -48,7 +50,6 @@ class CalendarFragment : Fragment() {
         loadViews(thisView)
         calendarlistener()
         radioButtonsListener()
-        loading.visibility = View.VISIBLE
         initViewModel()
         return thisView
     }
@@ -171,12 +172,15 @@ class CalendarFragment : Fragment() {
             .get(CalendarViewModel::class.java)
 
         viewModel.loadCalendar(calendar)
+
         viewModel.navigationEvent.observe(this, androidx.lifecycle.Observer {
             loading.visibility = View.GONE
         })
+
         viewModel.errorEvent.observe(this, androidx.lifecycle.Observer {
             thisView.context.showErrorDialog(getString(it))
         })
+
         viewModel.calendarAvailability.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             btAvailability.isEnabled = it.available_00_06 == true
                     || it.available_00_12 == true
@@ -186,9 +190,12 @@ class CalendarFragment : Fragment() {
                     || it.available_12_18 == true
                     || it.available_12_24 == true
                     || it.available_18_24 == true
+            loading.visibility = View.GONE
         })
+
         viewModel.successEvent.observe(this, androidx.lifecycle.Observer {
             thisView.context.showErrorDialog(getString(it))
+            loading.visibility = View.GONE
         })
     }
 
@@ -203,12 +210,13 @@ class CalendarFragment : Fragment() {
         cbDisp7 = root.findViewById(R.id.cbDisp7)
         cbDisp8 = root.findViewById(R.id.cbDisp8)
         loading = root.findViewById(R.id.vsLoading)
+        loading.visibility = View.VISIBLE
         tvmonth = root.findViewById(R.id.tvMonth)
         btAvailability = root.findViewById(R.id.btAvailability)
         val c1 = Calendar.getInstance()
         tvmonth.text = resources.getStringArray(R.array.months)[c1.get(Calendar.MONTH)]
         btAvailability.setOnClickListener {
-            val formatter = SimpleDateFormat("dd MMM yyyy")
+            val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
             viewModel.saveAvailability(formatter.format(dayClicked), thisView.context)
         }
     }

@@ -27,7 +27,6 @@ class CalendarViewModel : ViewModel() {
     }
 
     fun loadCalendar(compactCalendar: CompactCalendarView) {
-        // Crear lista de eventos para llenar calendario
         BACKGROUND.submit {
             val db = FirebaseFirestore.getInstance()
             db.collection("Servicios").get().addOnSuccessListener { result ->

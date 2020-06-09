@@ -25,6 +25,10 @@
         <action
             android:id="@+id/action_nav_home_to_volunteerServicesFragment"
             app:destination="@id/nav_vol_services" />
+        <action
+            android:id="@+id/action_nav_home_to_updateUserData"
+            app:destination="@id/nav_profile"
+            app:popUpTo="@id/nav_home" />
     </fragment>
     <fragment
         android:id="@+id/nav_calendar"
@@ -33,9 +37,9 @@
         tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/nav_boss_services"
-        android:name="org.dipalme.proteApp.ui.services.boss.ServicesBossFragment"
+        android:name="org.dipalme.proteApp.ui.services.boss.assign.BossAssignFragment"
         android:label="fragment_services"
-        tools:layout="@layout/fragment_boss_services" />
+        tools:layout="@layout/fragment_boss_assign" />
     <fragment
         android:id="@+id/nav_contacts"
         android:name="org.dipalme.proteApp.ui.contacts.ContactsFragment"
@@ -46,5 +50,10 @@
         android:name="org.dipalme.proteApp.ui.services.volunteer.VolunteerServicesFragment"
         android:label="fragment_volunteer_services"
         tools:layout="@layout/fragment_volunteer_services" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="org.dipalme.proteApp.ui.profile.UpdateUserData"
+        android:label="fragment_update_user_data"
+        tools:layout="@layout/fragment_update_user_data" />
 
 </navigation>

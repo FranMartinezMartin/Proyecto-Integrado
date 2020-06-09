@@ -16,7 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.extension.showErrorDialog
-import org.dipalme.proteApp.navigation_drawer
+import org.dipalme.proteApp.NavigationDrawer
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: LoginViewModel
@@ -30,15 +30,7 @@ class LoginActivity : AppCompatActivity() {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        etIndicative = findViewById(R.id.indicative)
-        etPassword = findViewById(R.id.password)
-        btLogin = findViewById(R.id.login_button)
-        loading = findViewById(R.id.vsLoading)
-
-        errorText = findViewById(R.id.tvError)
-        viewModel = LoginViewModel()
-        loading = findViewById(R.id.vsLoading)
+        loadViews()
         initViewModel()
 
         etIndicative.addTextChangedListener(object : TextWatcher {
@@ -59,11 +51,8 @@ class LoginActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, st: Int, bef: Int, co: Int) {}
         })
 
-        /**
-         * Sing-in button functionality
-         */
         btLogin.setOnClickListener {
-            viewModel.UserLog(this, etIndicative.text.toString(), etPassword.text.toString())
+            viewModel.userLog(this, etIndicative.text.toString(), etPassword.text.toString())
             loading.visibility = View.VISIBLE
         }
     }
@@ -91,16 +80,35 @@ class LoginActivity : AppCompatActivity() {
             }
             loading.visibility = View.GONE
         })
+
         viewModel.errorEvent.observe(this, Observer {
-            loading.visibility = View.GONE
             this.showErrorDialog(getString(it))
-        })
-        viewModel.navigationEvent.observe(this, Observer {
             loading.visibility = View.GONE
-            val i = Intent(this, navigation_drawer::class.java)
+        })
+
+        viewModel.navigationEvent.observe(this, Observer {
+            val i = Intent(this, NavigationDrawer::class.java)
             startActivity(i)
             finish()
             loading.visibility = View.GONE
         })
+
+        viewModel.firstTimeEvent.observe(this, Observer {
+            val i = Intent(this, ChangePassword::class.java)
+            i.putExtra("indicative", etIndicative.text.toString())
+            i.putExtra("passwd", etPassword.text.toString())
+            startActivity(i)
+            loading.visibility = View.GONE
+        })
+    }
+
+    private fun loadViews(){
+        etIndicative = findViewById(R.id.indicative)
+        etPassword = findViewById(R.id.password)
+        btLogin = findViewById(R.id.login_button)
+        errorText = findViewById(R.id.tvError)
+        viewModel = LoginViewModel()
+        loading = findViewById(R.id.vsLoading)
+        loading.visibility = View.VISIBLE
     }
 }

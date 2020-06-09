@@ -12,8 +12,6 @@ data class Volunteer(
     val password: String?,
     @SerializedName("correo")
     val mail: String?,
-    @SerializedName("foto")
-    val image: String? = null,
     @SerializedName("indicativo")
     val indicative: String?,
     @SerializedName("ingreso")

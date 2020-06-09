@@ -1,7 +1,8 @@
+@file:Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+
 package org.dipalme.proteApp.ui.services.boss.assign
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -121,7 +122,7 @@ class AssignViewModel : ViewModel() {
         }
     }
 
-    fun vehiclesList(service: Service) {
+    fun vehiclesList() {
         BACKGROUND.submit {
             val vehiclesList: MutableList<String> = mutableListOf()
             BACKGROUND.submit {
@@ -157,7 +158,6 @@ class AssignViewModel : ViewModel() {
                     db.collection("ServiciosAsignados").document("Proximos").collection(it)
                         .document("Vehiculos")
                 }
-
             try {
                 volunteersDocument?.set(hashMapOf("voluntarios" to volunteers))
                 vehiclesDocument?.set(hashMapOf("vehiculos" to vehicles))
@@ -192,7 +192,6 @@ class AssignViewModel : ViewModel() {
                                     "id vehiculo" to vehicles
                                 )
                             ).addOnSuccessListener {
-                                Log.w(" ##### TAG ##### ", "Datos guardados en los voluntarios")
                                 infoEvent.postValue(R.string.saveListAction)
                                 navigationEvent.postValue(NavigationEvent.NavigationAssignAction)
                             }

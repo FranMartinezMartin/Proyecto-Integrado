@@ -1,6 +1,5 @@
 package org.dipalme.proteApp.ui.customDialog
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +34,6 @@ class CustomAssignDialogAdapter(private val elements: List<String>) :
         }
         holder.checkBox.setOnClickListener {
             if (it.checkBox.isChecked) {
-                Log.w(" ##### TAG", elements[position])
                 volSaved.add(elements[position])
             } else {
                 for (element in volSaved) {
@@ -43,7 +41,6 @@ class CustomAssignDialogAdapter(private val elements: List<String>) :
                         volSaved.remove(element)
                 }
             }
-            Log.w(" ##### TAGLIST", "$volSaved")
         }
     }
 

@@ -6,19 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".ui.services.boss.assign.BossAssignFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvDate"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/imageCalendar"
         app:layout_constraintEnd_toStartOf="@+id/imageCalendar"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar6" />
+
+    <ImageView
+        android:id="@+id/imageCalendar"
+        android:layout_width="46dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/calendar"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvDate"
+        android:contentDescription="" />
 
     <View
         android:id="@+id/vDate"
@@ -28,16 +46,6 @@
         app:layout_constraintEnd_toEndOf="@+id/imageCalendar"
         app:layout_constraintStart_toStartOf="@+id/tvDate"
         app:layout_constraintTop_toTopOf="@+id/tvDate" />
-
-    <ImageView
-        android:id="@+id/imageCalendar"
-        android:layout_width="46dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="15dp"
-        android:src="@drawable/calendar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/servicesRecView"

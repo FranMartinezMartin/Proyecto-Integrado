@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import org.dipalme.proteApp.NavigationEvent
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.data.BACKGROUND
@@ -20,6 +21,8 @@ class LoginViewModel : ViewModel() {
     val loginDataState = MutableLiveData<LoginDataState>()
     val navigationEvent: SingleLiveEvent<NavigationEvent> = SingleLiveEvent()
     val errorEvent: SingleLiveEvent<Int> = SingleLiveEvent()
+    val firstTimeEvent: SingleLiveEvent<String> = SingleLiveEvent()
+    val updateEvent: SingleLiveEvent<NavigationEvent> = SingleLiveEvent()
 
     init {
         loginDataState.value = LoginDataState()
@@ -36,21 +39,17 @@ class LoginViewModel : ViewModel() {
             loginDataState.value?.copy(validPassword = password.isPasswordValid())
     }
 
-    fun UserLog(context: Context, indicative: String, password: String) {
+    fun userLog(context: Context, indicative: String, password: String) {
         BACKGROUND.submit {
-            // Access a Cloud Firestore instance from your Activity
             val db = FirebaseFirestore.getInstance()
-
             db.collection("Usuarios").document(indicative).get().addOnSuccessListener { r ->
                 if (r.exists()) {
                     if (r.data?.get("contraseña").toString() == password) {
-                        navigationEvent.postValue(NavigationEvent.NavigationMain)
                         val volunteer = Volunteer(
                             r.getBoolean("activo"),
                             r.getBoolean("carnet"),
                             r.getString("contraseña"),
                             r.getString("correo"),
-                            r.data?.get("foto").toString(),
                             r.getString("indicativo"),
                             r.getTimestamp("ingreso"),
                             r.getBoolean("jefe"),
@@ -58,9 +57,13 @@ class LoginViewModel : ViewModel() {
                             r.getString("nombre"),
                             r.getString("telefono")
                         )
-                        Log.w("Volunteer ID: LoginViewModel()", volunteer.toString())
-                        if (volunteer.active != null) {
-                            Repository(context).setCurrentVolunteer(volunteer)
+                        if (r.getString("contraseña") == "voluntario") {
+                            firstTimeEvent.postValue(volunteer.indicative)
+                        } else {
+                            if (volunteer.active != null) {
+                                Repository(context).setCurrentVolunteer(volunteer)
+                            }
+                            navigationEvent.postValue(NavigationEvent.NavigationMain)
                         }
                     } else {
                         errorEvent.postValue(R.string.ER_002)
@@ -79,6 +82,37 @@ class LoginViewModel : ViewModel() {
             val volunteer = Repository(context).getCurrentVolunteer()
             if (volunteer != null) {
                 navigationEvent.postValue(NavigationEvent.NavigationMain)
+            }
+        }
+    }
+
+    fun validatePasswordChange(password1: String) {
+        loginDataState.value =
+            loginDataState.value?.copy(updatePass = password1.isPasswordValid())
+    }
+
+    fun validatePasswordChangeRepeat(password2: String) {
+        loginDataState.value =
+            loginDataState.value?.copy(updatePassRepeat = password2.isPasswordValid())
+    }
+
+    fun updatePassword(indicative: String, password1: String, password2: String) {
+        BACKGROUND.submit {
+            if (password1 == password2) {
+                if (password1 != "voluntario") {
+                    val db = FirebaseFirestore.getInstance()
+                    db.collection("Usuarios").document(indicative)
+                        .update("contraseña", password2)
+                        .addOnSuccessListener {
+                            updateEvent.postValue(NavigationEvent.NavigationUpdatePassword)
+                        }.addOnFailureListener {
+                            errorEvent.postValue(R.string.impossibleToChangePass)
+                        }
+                } else {
+                    errorEvent.postValue(R.string.difPass)
+                }
+            } else {
+                errorEvent.postValue(R.string.difPass)
             }
         }
     }

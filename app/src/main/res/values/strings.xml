@@ -7,9 +7,11 @@
     <string name="action_sign_in">Iniciar sesión</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"¡ Bienvenido !"</string>
-    <string name="invalid_username">Indicativo incorrecto</string>
-    <string name="invalid_password">Contraseña incorrecta</string>
-    <string name="login_failed">"Inicio de sesión fallido"</string>
+    <string name="actualPass">Contraseña actual</string>
+    <string name="newPass">Contraseña nueva</string>
+    <string name="repeatNewPass">Confirmar contraseña</string>
+    <string name="updatePass">Actualizar contraseña</string>
+    <string name="characterLimit">Al menos 10 caracteres</string>
 
     <!-- Strings related to navigation drawer -->
     <string name="navigation_drawer_open">Abrir lateral</string>
@@ -89,6 +91,13 @@
 
     <string name="ER_1001">No se pudo conectar con el servidor.</string>
     <string name="ER_1002">Error al obtener datos del usuario</string>
+    <string name="invalid_username">Indicativo incorrecto</string>
+    <string name="invalid_password">Contraseña incorrecta</string>
+    <string name="login_failed">"Inicio de sesión fallido"</string>
+    <string name="passChangeInvalid">Contraseña no válida</string>
+    <string name="difPass">Las contraseñas no coinciden</string>
+    <string name="impossibleToChangePass">No se pudo cambiar la contraseña</string>
+    <string name="impossibleSaveData">No se pudieron guardar los cambios</string>
 
     <!-- Assign Action fragment -->
     <string name="btnAssignVolunteers">Voluntarios</string>
@@ -100,5 +109,13 @@
     <!-- Strings related to Volunteer Service menu fragment -->
     <string name="done">Realizados</string>
     <string name="next">Próximos</string>
+
+    <!-- Strings related o User Settings Menu -->
+    <string name="name">Nombre</string>
+    <string name="driver_license">Carnet de conducir</string>
+    <string name="email">Correo electronico</string>
+    <string name="birtday">Fecha de nacimiento</string>
+    <string name="mobilePhone">Telefono</string>
+    <string name="succesfulUpdate">Datos actualizados</string>
 
 </resources>

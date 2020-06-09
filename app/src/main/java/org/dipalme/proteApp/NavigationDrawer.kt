@@ -1,5 +1,9 @@
+@file:Suppress("DEPRECATION")
+
 package org.dipalme.proteApp
 
+import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -15,28 +19,29 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_navigation_drawer.*
 import org.dipalme.proteApp.data.Repository
 
-class navigation_drawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class NavigationDrawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var toolbar: Toolbar
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private var viewModel = DrawerViewModel()
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation_drawer)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         initViewModel()
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-
         drawerLayout = findViewById(R.id.drawer_layout)
         navView = findViewById(R.id.nav_view)
-        var hView = navView.getHeaderView(0)
-        var tvVolName: TextView = hView.findViewById(R.id.tvVolunteerName)
-        var tvVolInd: TextView = hView.findViewById(R.id.tvVolunteerIndicative)
-        var volunteer = Repository(this).getCurrentVolunteer()
+        val hView = navView.getHeaderView(0)
+        val tvVolName: TextView = hView.findViewById(R.id.tvVolunteerName)
+        val tvVolInd: TextView = hView.findViewById(R.id.tvVolunteerIndicative)
+        val volunteer = Repository(this).getCurrentVolunteer()
         tvVolName.text = volunteer?.name.toString()
         tvVolInd.text = volunteer?.indicative.toString()
 
@@ -56,7 +61,6 @@ class navigation_drawer : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.navigation_drawer, menu)
         return true
     }
@@ -65,6 +69,10 @@ class navigation_drawer : AppCompatActivity(), NavigationView.OnNavigationItemSe
         return when (item.itemId) {
             R.id.logout -> {
                 Repository(this).logoutVolunteer()
+                true
+            }
+            R.id.profile -> {
+                findNavController(R.id.nav_host_fragment).navigate(R.id.nav_profile)
                 true
             }
             else -> super.onOptionsItemSelected(item)

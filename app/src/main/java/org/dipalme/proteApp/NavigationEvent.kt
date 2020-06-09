@@ -6,6 +6,8 @@ sealed class NavigationEvent {
     object NavigationContact : NavigationEvent()
     object NavigationAssignFragment : NavigationEvent()
     object NavigationAssignAction : NavigationEvent()
+    object NavigationUpdatePassword : NavigationEvent()
+    object NavigationUpdateProfile : NavigationEvent()
 
     class AssignActionVolunteer(list: MutableList<String>) {
         val data = list

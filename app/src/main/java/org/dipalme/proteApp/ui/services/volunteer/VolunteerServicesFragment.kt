@@ -1,7 +1,8 @@
+@file:Suppress("DEPRECATION")
+
 package org.dipalme.proteApp.ui.services.volunteer
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,8 +25,6 @@ class VolunteerServicesFragment : Fragment() {
     private lateinit var thisView: View
     private var nextList = mutableListOf<Service>()
     private var doneList = mutableListOf<Service>()
-    private var volList = mutableListOf<String>()
-    private var vehiList = mutableListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

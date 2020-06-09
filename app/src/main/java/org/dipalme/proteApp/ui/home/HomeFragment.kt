@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.dipalme.proteApp.ui.home
 
 import android.os.Bundle

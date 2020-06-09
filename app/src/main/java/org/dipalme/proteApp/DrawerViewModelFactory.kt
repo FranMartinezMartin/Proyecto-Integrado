@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package org.dipalme.proteApp
 
 import androidx.lifecycle.ViewModel

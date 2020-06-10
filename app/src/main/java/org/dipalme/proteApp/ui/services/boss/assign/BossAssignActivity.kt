@@ -20,6 +20,8 @@ import org.dipalme.proteApp.extension.showErrorDialog
 import org.dipalme.proteApp.model.Service
 import org.dipalme.proteApp.ui.customDialog.CustomAssignDialogVolunteer
 import org.dipalme.proteApp.ui.customDialog.CustomAssingDialogVehicle
+import java.text.SimpleDateFormat
+import java.util.*
 
 class BossAssignActivity : AppCompatActivity() {
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
@@ -75,6 +77,9 @@ class BossAssignActivity : AppCompatActivity() {
 
         viewModel.serviceEvent.observe(this, Observer {
             service = it
+            tvServiceName.text = it.name
+            val formatter = SimpleDateFormat("dd MMM yyyy HH:mm", Locale.getDefault())
+            tvTime.text = formatter.format(service.date)
         })
 
         viewModel.volunteerListEvent.observe(this, Observer {

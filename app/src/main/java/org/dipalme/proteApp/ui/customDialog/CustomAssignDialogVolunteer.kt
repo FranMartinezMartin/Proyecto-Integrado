@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.custom_assign_dialog.view.*
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.ui.services.boss.assign.AssignViewModel
-import org.dipalme.proteApp.ui.services.boss.assign.BossAssignActivity
-import java.util.*
 
 class CustomAssignDialogVolunteer(list: MutableList<String>, viewModel: AssignViewModel) :
     DialogFragment() {

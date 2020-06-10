@@ -46,7 +46,6 @@ class HomeAdapter(private val data: List<News>, context: Context) :
         }
     }
 
-
     class Holder(v: View) : RecyclerView.ViewHolder(v) {
         val imageView: ImageView = itemView.findViewById(R.id.ivImage)
         val title: TextView = itemView.findViewById(R.id.tvName)

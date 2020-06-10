@@ -15,10 +15,6 @@ sealed class NavigationEvent {
         fun getList(): MutableList<String> {
             return data
         }
-
-        fun getSize(): Int {
-            return data.size
-        }
     }
 
     class AssignActionVehicle(list: MutableList<String>) {
@@ -26,10 +22,6 @@ sealed class NavigationEvent {
 
         fun getList(): MutableList<String> {
             return data
-        }
-
-        fun getSize(): Int {
-            return data.size
         }
     }
 }

@@ -49,7 +49,6 @@ class CalendarViewModel : ViewModel() {
         BACKGROUND.submit {
             val volunteer = Repository(context).getCurrentVolunteer()
             val db = FirebaseFirestore.getInstance()
-
             db.collection("Disponibilidad").document(day).collection("voluntarios").document(volunteer?.name.toString())
                 .set(
                     mapOf(
@@ -81,5 +80,4 @@ class CalendarViewModel : ViewModel() {
         calendarAvailability.value =
             CalendarAvailabilityState(rb1, rb2, rb3, rb4, rb5, rb6, rb7, rb8)
     }
-
 }

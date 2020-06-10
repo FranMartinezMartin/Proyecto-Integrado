@@ -39,9 +39,6 @@ class NextServicesAdapter(private val services: MutableList<Service>, contextPas
         val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
         holder.date.text = formatter.format(service.date!!)
 
-        /**
-         * Obtengo de ServiciosAsignados la lista con los voluntarios y vehiculos que añado al servicio despues
-         */
         val db = FirebaseFirestore.getInstance()
             .collection("ServiciosAsignados").document("Proximos")
         if (service.volunteers != null) {
@@ -77,9 +74,7 @@ class NextServicesAdapter(private val services: MutableList<Service>, contextPas
         val tvServiceName: TextView = itemView.findViewById(R.id.tvServiceName)
         val placeName: TextView = itemView.findViewById(R.id.tvPlaceName)
         val date: TextView = itemView.findViewById(R.id.date)
-        val frame = itemView.findViewById<View>(R.id.frame)
         val volunteerRec: RecyclerView = itemView.findViewById(R.id.volunteersList)
         val vehicleRec: RecyclerView = itemView.findViewById(R.id.vehiclesList)
-
     }
 }

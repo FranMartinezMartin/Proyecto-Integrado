@@ -23,7 +23,6 @@ class NextSubAdapter(private val list: MutableList<String>) :
 
     override fun onBindViewHolder(holder: ServicesHolder, position: Int) {
         val data = list[position]
-            Log.w("Nombre ", data)
             holder.data.text = data
     }
 

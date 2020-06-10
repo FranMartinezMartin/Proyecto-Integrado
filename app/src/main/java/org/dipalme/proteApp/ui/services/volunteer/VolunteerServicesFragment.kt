@@ -65,7 +65,7 @@ class VolunteerServicesFragment : Fragment() {
             if (it.name != null) {
                 doneList.add(it)
                 doneRecycler.layoutManager = LinearLayoutManager(thisView.context)
-                doneRecycler.adapter = DoneServicesAdapter(doneList, thisView.context)
+                doneRecycler.adapter = DoneServicesAdapter(doneList)
             }
             loading.visibility = View.GONE
         })

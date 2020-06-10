@@ -21,7 +21,6 @@ import org.dipalme.proteApp.extension.showErrorDialog
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 @Suppress("DEPRECATION")
 class CalendarFragment : Fragment() {
     private lateinit var calendar: CompactCalendarView
@@ -40,7 +39,6 @@ class CalendarFragment : Fragment() {
     private lateinit var thisView: View
     private lateinit var dayClicked: Date
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,13 +46,13 @@ class CalendarFragment : Fragment() {
     ): View? {
         thisView = inflater.inflate(R.layout.fragment_calendar, container, false)
         loadViews(thisView)
-        calendarlistener()
+        calendarListener()
         radioButtonsListener()
         initViewModel()
         return thisView
     }
 
-    private fun calendarlistener() {
+    private fun calendarListener() {
         calendar.setListener(object : CompactCalendarViewListener {
             override fun onDayClick(dateClicked: Date) {
                 val events: List<Event> = calendar.getEvents(dateClicked)

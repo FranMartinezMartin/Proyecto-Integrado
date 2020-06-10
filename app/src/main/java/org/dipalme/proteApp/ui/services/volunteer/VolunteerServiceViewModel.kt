@@ -1,18 +1,12 @@
 package org.dipalme.proteApp.ui.services.volunteer
 
 import android.content.Context
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import org.dipalme.proteApp.NavigationEvent
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.data.BACKGROUND
 import org.dipalme.proteApp.data.Repository
-import org.dipalme.proteApp.data.ServicesDataState
 import org.dipalme.proteApp.model.Service
 import org.dipalme.proteApp.ui.liveEvents.SingleLiveEvent
 

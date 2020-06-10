@@ -2,8 +2,6 @@ package org.dipalme.proteApp.ui.home
 
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.data.BACKGROUND
 import org.dipalme.proteApp.model.News
@@ -32,9 +30,7 @@ class HomeViewModel : ViewModel() {
                     errorEvent.postValue(R.string.ER_015)
                 }
             }.addOnFailureListener {
-
             }
         }
     }
-
 }

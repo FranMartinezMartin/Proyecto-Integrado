@@ -7,12 +7,8 @@ import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import org.dipalme.proteApp.model.Volunteer
 import org.dipalme.proteApp.ui.login.LoginActivity
-import org.jetbrains.anko.defaultSharedPreferences
 
 class Repository(contextReceived: Context) {
-    /**
-     * Save current user to avoid login while user is logged
-     */
     private val PERSON_KEY = "PERSON_KEY"
     private val context = contextReceived
     private val PREFS_FILENAME = "org.dipalme.proteApp.prefs"

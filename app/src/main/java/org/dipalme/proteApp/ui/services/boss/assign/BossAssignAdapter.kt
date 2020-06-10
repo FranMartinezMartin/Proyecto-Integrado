@@ -2,19 +2,14 @@ package org.dipalme.proteApp.ui.services.boss.assign
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import org.dipalme.proteApp.R
 import org.dipalme.proteApp.model.Service
-import org.dipalme.proteApp.model.Vehicle
-import org.dipalme.proteApp.model.Volunteer
 import java.text.SimpleDateFormat
 import java.util.*
 
